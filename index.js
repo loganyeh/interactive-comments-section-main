@@ -11,11 +11,11 @@ let isTweet = true;
 let isReply = true;
 let isComment = true; 
 let currentUpvotes = Number(totalUpvotes.innerText);
+let isClicked = false;
 
 // EVENT LISTENERS
 upvote.addEventListener("click", () => {
     upvoteTick();
-    upvote.style.color = "orange";
 });
 downvote.addEventListener("click", () => {
     downvoteTick();
@@ -23,16 +23,39 @@ downvote.addEventListener("click", () => {
 
 // FUNCTIONS
 function upvoteTick(){
-    currentUpvotes++;
-    totalUpvotes.innerHTML = `
-        ${currentUpvotes}
-    `;
+    isClicked = !isClicked;
+    if(isClicked){
+        currentUpvotes++;
+        totalUpvotes.innerHTML = `
+            ${currentUpvotes}
+        `;
+        upvote.style.color = "orange";
+    }
+    else{
+        currentUpvotes--;
+        totalUpvotes.innerHTML = `
+            ${currentUpvotes}
+        `;
+        upvote.style.color = "#6B7280";
+    }
 }
 function downvoteTick(){
-    currentUpvotes--;
-    totalUpvotes.innerHTML = `
-        ${currentUpvotes}
-    `;
+    isClicked = !isClicked;
+    if(isClicked){
+        currentUpvotes--;
+        totalUpvotes.innerHTML = `
+            ${currentUpvotes}
+        `;
+        downvote.style.color = "orange";
+    }
+    else{
+        currentUpvotes++;
+        totalUpvotes.innerHTML = `
+            ${currentUpvotes}
+        `;
+        downvote.style.color = "#6B7280";
+    }
+    
 }
 
 // CALLS
