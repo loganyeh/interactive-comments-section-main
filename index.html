@@ -3,24 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+  <link rel="stylesheet" href="style.css">
   <title>Frontend Mentor | Interactive comments section</title>
-
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
+<body class="h-screen w-screen">
+
+  <div id="container" 
+        class="
+          grid grid-rows-12 grid-cols-12 h-full w-full 
+          bg-gray-100
+        "
+  >
+    <div id="stack" 
+          class="
+            row-start-2 row-end-12 col-start-3 col-end-11
+            bg-gray-50 border-2 border-red-600
+            shadow-2xl
+          "
+    >
+
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
   <!-- Pull dynamic content from the data.json file -->
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
+  <script src="index.js"></script>
 </body>
 </html>
