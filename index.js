@@ -10,10 +10,30 @@ const timeline = document.getElementById("timeline")
 let isTweet = true;
 let isReply = true;
 let isComment = true; 
+let currentUpvotes = Number(totalUpvotes.innerText);
 
 // EVENT LISTENERS
+upvote.addEventListener("click", () => {
+    upvoteTick();
+    upvote.style.color = "orange";
+});
+downvote.addEventListener("click", () => {
+    downvoteTick();
+});
 
 // FUNCTIONS
+function upvoteTick(){
+    currentUpvotes++;
+    totalUpvotes.innerHTML = `
+        ${currentUpvotes}
+    `;
+}
+function downvoteTick(){
+    currentUpvotes--;
+    totalUpvotes.innerHTML = `
+        ${currentUpvotes}
+    `;
+}
 
 // CALLS
 let count = 1;
