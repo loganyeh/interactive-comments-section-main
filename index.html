@@ -13,11 +13,32 @@
   </style>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body class="h-screen w-screen">
+<!-- BODY -->
+<body class="h-screen w-screen flex justify-center items-center bg-white">
+
+  <!-- CONTAINER -->
+  <div id="container" class="h-full w-3/4 flex justify-center items-center bg-gray-50 shadow-sm">
+
+    <!-- STACK -->
+    <div id="stack" class="h-full w-4/5 flex justify-center items-center border-2 border-black">
+      
+      <!-- TIMELINE -->
+      <div id="timeline" class="h-full w-2/3 flex flex-col items-center border-2 border-black">
+
+        <!-- TWEETS -->
+        <!-- <div id="tweet" class="h-1/6 w-5/6 m-5 rounded border-2 border-red-600">
+          TWEET
+        </div>  -->
+
+      </div>
+    </div>
+  </div>
+
 
   
   
-  
+
+
   <!-- Pull dynamic content from the data.json file -->
   <script src="index.js"></script>
 </body>
