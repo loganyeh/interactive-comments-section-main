@@ -14,24 +14,25 @@ let currentUpvotes = Number(totalUpvotes.innerText);
 
 // EVENT LISTENERS
 upvote.addEventListener("click", () => {
-    console.log("upvote listener clicked");
     upvoteTick();
+    upvote.style.color = "orange";
 });
 downvote.addEventListener("click", () => {
-    console.log("downvote listener clicked");
     downvoteTick();
 });
 
 // FUNCTIONS
 function upvoteTick(){
+    currentUpvotes++;
     totalUpvotes.innerHTML = `
-        ${currentUpvotes++}
-    `
+        ${currentUpvotes}
+    `;
 }
 function downvoteTick(){
+    currentUpvotes--;
     totalUpvotes.innerHTML = `
-        ${currentUpvotes--}
-    `
+        ${currentUpvotes}
+    `;
 }
 
 // CALLS
