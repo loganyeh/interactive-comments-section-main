@@ -1,10 +1,17 @@
-// DOM ELEMENTS
+// ----- DOM ELEMENTS ----- 
 const timeline = document.getElementById("timeline")
+    // UPVOTE CONTAINER DOM ELEMENTS
+    const upvoteContainer = document.getElementById("upvote-container");
+    const upvote = document.getElementById("upvote");
+    const totalUpvotes = document.getElementById("total-upvotes");
+    const downvote = document.getElementById("downvote");
 
 // VARIABLES
 let isTweet = true;
 let isReply = true;
 let isComment = true; 
+
+// EVENT LISTENERS
 
 // FUNCTIONS
 
