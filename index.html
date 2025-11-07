@@ -17,7 +17,7 @@
 <body class="h-screen w-screen flex justify-center items-center bg-white">
 
   <!-- CONTAINER -->
-  <div id="container" class="h-full w-3/4 flex justify-center items-center bg-gray-50 shadow-sm">
+  <div id="container" class="h-full w-3/4 flex justify-center items-center font-sans bg-gray-50 shadow-sm">
 
     <!-- STACK -->
     <div id="stack" class="h-full w-4/5 flex justify-center items-center border-2 border-black">
@@ -26,7 +26,7 @@
       <div id="timeline" class="h-full w-2/3 flex flex-col justify-center items-center border-2 border-black">
 
         <!-- TWEETS CONTAINER -->
-        <div id="tweet" class="h-52 w-5/6 grid grid-rows-13 grid-cols-13 m-5 rounded bg-white border-2 border-red-600 shadow-md">
+        <div id="tweet" class="h-52 w-5/6 grid grid-rows-13 grid-cols-13 p-4 rounded-2xl bg-white shadow-md">
 
           <!-- UPVOTE/DOWNVOTE CONTAINER -->
           <div id="upvote-container" class="row-start-2 row-end-11 col-start-1 col-end-2 text-gray-50 bg-gray-200 rounded-lg border border-gray-600">
@@ -36,21 +36,24 @@
           </div>
 
           <!-- PROFILE IMG -->
-          <div id="profile-img" class="row-start-1 row-end-5 col-start-2 col-end-4 border-2 border-red-600">
-            <img src="" alt="">
+          <div id="profile-img" class="flex justify-center items-center row-start-2 row-end-4 col-start-2 col-end-4 ">
+            <img src="images/avatars/image-amyrobson.png" alt="profile picture" id="profile-pic-1" class="h-10 w-10 rounded-full border-2 border-black">
           </div>
 
           <!-- USERNAME -->
-          <div id="username" class="row-start-2 row-end-4 col-start-4 col-end-7 border-2 border-red-600">amyrobson</div>
+          <div id="username" class="flex row-start-2 row-end-4 col-start-4 col-end-7 font-bold">amyrobson</div>
 
           <!-- DATE -->
-          <div id="date" class="row-start-2 row-end-4 col-start-7 col-end-10 border-2 border-red-600">1 Month Ago</div>
+          <div id="date" class="row-start-2 row-end-4 col-start-7 col-end-10 text-gray-400">1 Month Ago</div>
 
           <!-- TEXT -->
-          <div id="text" class="row-start-5 row-end-12 col-start-2 col-end-14 border-2 border-red-600">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos quod atque magnam maiores, ipsam illo tempora, amet eaque provident neque exercitationem earum praesentium aliquam animi! Labore inventore rem error aut?</div>
+          <div id="text" class="row-start-5 row-end-12 col-start-2 col-end-14 pl-6">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos quod atque magnam maiores, ipsam illo tempora, amet eaque provident neque exercitationem earum praesentium aliquam animi! Labore inventore rem error aut?</div>
 
           <!-- REPLY -->
-          <div id="reply" class="row-start-2 row-end-4 col-start-11 col-end-14 border-2 border-red-600">Reply</div>
+          <div id="reply" class="flex justify-end items-center row-start-2 row-end-4 col-start-11 col-end-14 pr-2 ">
+            <button id="reply-button" class="pr-2 cursor-pointer"><img src="images/icon-reply.svg" alt=""></button>
+            <span class="font-bold text-blue-900">Reply</span>
+          </div>
         </div> 
       </div>
     </div>
