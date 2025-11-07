@@ -27,4 +27,5 @@
             <button id="reply-button" class="cursor-pointer"><img src="images/icon-reply.svg" alt="error loading"></button>
             <span class="font-bold text-blue-900">Reply</span>
           </div>
+          
         </div> 

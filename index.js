@@ -10,7 +10,8 @@
 // WHEN ADDING OTHER TWEETS PUT THE IMAGES AND TWEETS USERNAMES INTO THE ARRAY AND
 // ITERATE THROUGH THAT
 
-for(let i=0;i<3;i++){
+let count = 1;
+for(let i=0;i<1;i++){
     // TIMELINE CONTAINER
     const timeline = document.getElementById("timeline");
 
@@ -66,7 +67,8 @@ for(let i=0;i<3;i++){
     const date = document.createElement("div");
     date.id = "date";
     date.className = "row-start-2 row-end-4 col-start-7 col-end-10 -ml-11 text-gray-500 z-10 overflow";
-    date.textContent = "1 month ago";
+    date.textContent = `${count} month ago`;
+    count++;
     tweet.appendChild(date);
 
     // TEXT 
