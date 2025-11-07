@@ -5,6 +5,8 @@ const timeline = document.getElementById("timeline")
     const upvote = document.getElementById("upvote");
     const totalUpvotes = document.getElementById("total-upvotes");
     const downvote = document.getElementById("downvote");
+// REPLY BUTTON DOM 
+const replyButton = document.getElementById("reply-button");
 
 // VARIABLES
 let isTweet = true;
@@ -20,6 +22,9 @@ upvote.addEventListener("click", () => {
 downvote.addEventListener("click", () => {
     downvoteTick();
 });
+replyButton.addEventListener("click", () => {
+    console.log("reply button clicked");
+})
 
 // FUNCTIONS
 function upvoteTick(){
