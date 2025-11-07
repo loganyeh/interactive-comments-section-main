@@ -73,6 +73,10 @@ function downvoteTick(){
 // CALLS
 let count = 1;
 const num = 5;
+
+// WHEN ADDING OTHER TWEETS PUT THE IMAGES AND TWEETS USERNAMES INTO THE ARRAY AND
+// ITERATE THROUGH THAT
+
 // for(let i = 0; i < num; i++){
 //     const post = document.createElement(`div`);
 //     post.id = `tweet-${count}`;
