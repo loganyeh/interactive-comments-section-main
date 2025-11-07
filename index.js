@@ -118,6 +118,30 @@ for(let i=0;i<1;i++){
     replyProfileImgContainer.appendChild(replyProfileImg);
     replyCommentContainer.appendChild(replyProfileImgContainer);
 
+    // REPLY SECTION
+    const replySection = document.createElement("div");
+    replySection.id = "reply-section";
+    replySection.className = "row-start-2 row-end-12 col-start-2 col-end-12";
+    replyCommentContainer.appendChild(replySection);
+    const textReply = document.createElement("input");
+    textReply.type = "text";
+    textReply.style.cursor = "autofocus";
+    textReply.id = "comment-box";
+    textReply.className = "h-full w-full ml-1 text-gray-500 rounded-xl border border-gray-500 focus:border-red-600";
+    textReply.placeholder = "Add a comment...";
+    replySection.appendChild(textReply);
+
+    // SEND BUTTON
+    const sendButton = document.createElement("div");
+    sendButton.id = "send-button";
+    sendButton.className = "row-start-2 row-end-7 col-start-12 col-end-14 overflow-visible";
+    replyCommentContainer.appendChild(sendButton);
+    const sendReplyButton = document.createElement("button");
+    sendReplyButton.id = "send-reply-button";
+    sendReplyButton.className = "h-full w-full ml-2 font-bold text-white bg-blue-900 rounded-xl cursor-pointer";
+    sendReplyButton.textContent = "SEND";
+    sendButton.appendChild(sendReplyButton);
+
     // ----------------------------------------------------------------
 
     // DOM ELEMENTS
