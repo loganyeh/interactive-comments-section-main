@@ -12,10 +12,10 @@
 
 let count = 1;
 for(let i=0;i<1;i++){
-    // TIMELINE CONTAINER
+    // TIMELINE CONTAINER ---------------------------------
     const timeline = document.getElementById("timeline");
 
-    // TWEET CONTAINER
+    // TWEET CONTAINER ------------------------------------
     const tweet = document.createElement(`div`);
     tweet.id = "tweet";
     tweet.className = "h-44 w-5/6 grid grid-rows-13 grid-cols-13 mt-3 p-4 rounded-xl bg-white shadow-md";
@@ -100,6 +100,23 @@ for(let i=0;i<1;i++){
     replyText.className = "font-bold text-blue-900";
     replyText.textContent = "Reply";
     reply.appendChild(replyText);
+
+    // REPLY COMMENT CONTAINER -------------------------------
+    const replyCommentContainer = document.createElement("div");
+    replyCommentContainer.id = "reply-comment-container";
+    replyCommentContainer.className = "h-44 w-5/6 grid grid-rows-13 grid-cols-13 mt-3 p-4 rounded-xl bg-white shadow-md";
+    timeline.appendChild(replyCommentContainer);
+
+    // PROFILE IMG 
+    const replyProfileImgContainer = document.createElement("div");
+    replyProfileImgContainer.id = "reply-profile-img";
+    replyProfileImgContainer.className = "row-start-2 row-end-6 col-start-1 col-end-2";
+    const replyProfileImg = document.createElement("img");
+    replyProfileImg.id = "reply-profile-img";
+    replyProfileImg.className = "h-full w-full";
+    replyProfileImg.src = "images/avatars/image-juliusomo.png";
+    replyProfileImgContainer.appendChild(replyProfileImg);
+    replyCommentContainer.appendChild(replyProfileImgContainer);
 
     // ----------------------------------------------------------------
 
