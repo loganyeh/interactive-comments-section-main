@@ -29,6 +29,12 @@ function upvoteTick(){
         totalUpvotes.innerHTML = `
             ${currentUpvotes}
         `;
+        setTimeout(() => {
+            totalUpvotes.style.color = "green";
+        }, 12);
+        setTimeout(() => {
+            totalUpvotes.style.color = "#1E40AF";
+        }, 1000);
         upvote.style.color = "orange";
     }
     else{
@@ -36,6 +42,12 @@ function upvoteTick(){
         totalUpvotes.innerHTML = `
             ${currentUpvotes}
         `;
+        setTimeout(() => {
+            totalUpvotes.style.color = "red";
+        }, 12);
+        setTimeout(() => {
+            totalUpvotes.style.color = "#1E40AF";
+        }, 1000);
         upvote.style.color = "#6B7280";
     }
 }
