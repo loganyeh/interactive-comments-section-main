@@ -1,102 +1,21 @@
 // ----- DOM ELEMENTS ----- 
 
-    // UPVOTE CONTAINER DOM ELEMENTS
-    const upvoteContainer = document.getElementById("upvote-container");
-    const upvote = document.getElementById("upvote");
-    const totalUpvotes = document.getElementById("total-upvotes");
-    const downvote = document.getElementById("downvote");
-
-// REPLY BUTTON DOM 
-const replyButton = document.getElementById("reply-button");
-
 // VARIABLES
-let isTweet = true;
-let isReply = true;
-let isComment = true; 
-// let currentUpvotes = Number(totalUpvotes.innerText);
-let isClicked = false;
 
 // EVENT LISTENERS
-// upvote.addEventListener("click", () => {
-//     upvoteTick();
-// });
-// downvote.addEventListener("click", () => {
-//     downvoteTick();
-// });
-// replyButton.addEventListener("click", () => {
-//     console.log("reply button clicked");
-// })
 
 // FUNCTIONS
-function upvoteTick(){
-    isClicked = !isClicked;
-    if(isClicked){
-        currentUpvotes++;
-        totalUpvotes.innerHTML = `
-            ${currentUpvotes}
-        `;
-        setTimeout(() => {
-            totalUpvotes.style.color = "green";
-        }, 12);
-        setTimeout(() => {
-            totalUpvotes.style.color = "#1E40AF";
-        }, 1000);
-        upvote.style.color = "orange";
-    }
-    else{
-        currentUpvotes--;
-        totalUpvotes.innerHTML = `
-            ${currentUpvotes}
-        `;
-        setTimeout(() => {
-            totalUpvotes.style.color = "red";
-        }, 12);
-        setTimeout(() => {
-            totalUpvotes.style.color = "#1E40AF";
-        }, 1000);
-        upvote.style.color = "#6B7280";
-    }
-}
-function downvoteTick(){
-    isClicked = !isClicked;
-    if(isClicked){
-        currentUpvotes--;
-        totalUpvotes.innerHTML = `
-            ${currentUpvotes}
-        `;
-        setTimeout(() => {
-            totalUpvotes.style.color = "red";
-        }, 12);
-        setTimeout(() => {
-            totalUpvotes.style.color = "#1E40AF";
-        }, 1000);
-        downvote.style.color = "orange";
-    }
-    else{
-        currentUpvotes++;
-        totalUpvotes.innerHTML = `
-            ${currentUpvotes}
-        `;
-        setTimeout(() => {
-            totalUpvotes.style.color = "green";
-        }, 12);
-        setTimeout(() => {
-            totalUpvotes.style.color = "#1E40AF";
-        }, 1000);
-        downvote.style.color = "#6B7280";
-    }
-    
-}
 
 // CALLS
 // WHEN ADDING OTHER TWEETS PUT THE IMAGES AND TWEETS USERNAMES INTO THE ARRAY AND
 // ITERATE THROUGH THAT
 
-for(let i=0;i<5;i++){
-    // TIMELINE CONTAINER
+let count = 1;
+for(let i=0;i<1;i++){
+    // TIMELINE CONTAINER ---------------------------------
     const timeline = document.getElementById("timeline");
 
-    // TWEET CONTAINER
+    // TWEET CONTAINER ------------------------------------
     const tweet = document.createElement(`div`);
     tweet.id = "tweet";
     tweet.className = "h-44 w-5/6 grid grid-rows-13 grid-cols-13 mt-3 p-4 rounded-xl bg-white shadow-md";
@@ -140,7 +59,7 @@ for(let i=0;i<5;i++){
     // USERNAME
     const username = document.createElement("div");
     username.id = "username";
-    username.className = "row-start-2 row-end-4 col-start-4 col-end-7 -ml-2 font-bold z-10 overflow";
+    username.className = "row-start-2 row-end-4 col-start-4 col-end-7 -ml-2 font-bold cursor-pointer hover:underline z-10 overflow";
     username.textContent = "amyrobson";
     tweet.appendChild(username);
 
@@ -148,7 +67,8 @@ for(let i=0;i<5;i++){
     const date = document.createElement("div");
     date.id = "date";
     date.className = "row-start-2 row-end-4 col-start-7 col-end-10 -ml-11 text-gray-500 z-10 overflow";
-    date.textContent = "1 month ago";
+    date.textContent = `${count} month ago`;
+    count++;
     tweet.appendChild(date);
 
     // TEXT 
@@ -163,20 +83,85 @@ for(let i=0;i<5;i++){
     reply.id = "reply";
     reply.className = "row-start-2 row-end-4 col-start-11 col-end-14 pr-2 text-right";
     tweet.appendChild(reply);
-    // REPLY BUTTON
+
+        // REPLY BUTTON
     const replyButton = document.createElement("button");
     replyButton.id = "reply-button";
     replyButton.className = "cursor-pointer pr-1";
     reply.appendChild(replyButton);
+
     const replyImg = document.createElement("img");
     replyImg.src = "images/icon-reply.svg";
     replyButton.appendChild(replyImg);
-    // REPLY SPAN
+
+        // REPLY SPAN
     const replyText = document.createElement("span");
     replyText.id = "reply-text";
     replyText.className = "font-bold text-blue-900";
     replyText.textContent = "Reply";
     reply.appendChild(replyText);
+
+    // REPLY COMMENT CONTAINER -------------------------------
+    const replyCommentContainer = document.createElement("div");
+    replyCommentContainer.id = "reply-comment-container";
+    replyCommentContainer.className = "h-44 w-5/6 grid grid-rows-13 grid-cols-13 mt-3 p-4 rounded-xl bg-white shadow-md";
+    timeline.appendChild(replyCommentContainer);
+
+    // PROFILE IMG 
+    const replyProfileImgContainer = document.createElement("div");
+    replyProfileImgContainer.id = "reply-profile-img";
+    replyProfileImgContainer.className = "row-start-2 row-end-6 col-start-1 col-end-2";
+    const replyProfileImg = document.createElement("img");
+    replyProfileImg.id = "reply-profile-img";
+    replyProfileImg.className = "h-full w-full";
+    replyProfileImg.src = "images/avatars/image-juliusomo.png";
+    replyProfileImgContainer.appendChild(replyProfileImg);
+    replyCommentContainer.appendChild(replyProfileImgContainer);
+
+    // REPLY SECTION
+    const replySection = document.createElement("div");
+    replySection.id = "reply-section";
+    replySection.className = "row-start-2 row-end-12 col-start-2 col-end-12";
+    replyCommentContainer.appendChild(replySection);
+    const textReply = document.createElement("input");
+    textReply.type = "text";
+    textReply.style.cursor = "autofocus";
+    textReply.id = "comment-box";
+    textReply.className = "h-full w-full ml-1 text-gray-500 rounded-xl border border-gray-500 focus:border-red-600";
+    textReply.placeholder = "Add a comment...";
+    replySection.appendChild(textReply);
+
+    // SEND BUTTON
+    const sendButton = document.createElement("div");
+    sendButton.id = "send-button";
+    sendButton.className = "row-start-2 row-end-7 col-start-12 col-end-14 overflow-visible";
+    replyCommentContainer.appendChild(sendButton);
+    const sendReplyButton = document.createElement("button");
+    sendReplyButton.id = "send-reply-button";
+    sendReplyButton.className = "h-full w-full ml-2 font-bold text-white bg-blue-900 rounded-xl cursor-pointer";
+    sendReplyButton.textContent = "SEND";
+    sendButton.appendChild(sendReplyButton);
+
+    // ----------------------------------------------------------------
+
+    // DOM ELEMENTS
+
+    // EVENT LISTENERS
+    username.addEventListener("click", () => {
+        console.log("clicked username... visiting profile");
+    });
+    replyImg.addEventListener("click", () => {
+        console.log("clicked reply button");
+    });
+
+    // FUNCTIONS
+
+    // CALLS
+
+    // SANDBOX
+
+
+
 
 }
 
