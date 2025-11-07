@@ -1,5 +1,4 @@
 // ----- DOM ELEMENTS ----- 
-const timeline = document.getElementById("timeline")
 
     // UPVOTE CONTAINER DOM ELEMENTS
     const upvoteContainer = document.getElementById("upvote-container");
@@ -14,19 +13,19 @@ const replyButton = document.getElementById("reply-button");
 let isTweet = true;
 let isReply = true;
 let isComment = true; 
-let currentUpvotes = Number(totalUpvotes.innerText);
+// let currentUpvotes = Number(totalUpvotes.innerText);
 let isClicked = false;
 
 // EVENT LISTENERS
-upvote.addEventListener("click", () => {
-    upvoteTick();
-});
-downvote.addEventListener("click", () => {
-    downvoteTick();
-});
-replyButton.addEventListener("click", () => {
-    console.log("reply button clicked");
-})
+// upvote.addEventListener("click", () => {
+//     upvoteTick();
+// });
+// downvote.addEventListener("click", () => {
+//     downvoteTick();
+// });
+// replyButton.addEventListener("click", () => {
+//     console.log("reply button clicked");
+// })
 
 // FUNCTIONS
 function upvoteTick(){
@@ -93,11 +92,14 @@ function downvoteTick(){
 // WHEN ADDING OTHER TWEETS PUT THE IMAGES AND TWEETS USERNAMES INTO THE ARRAY AND
 // ITERATE THROUGH THAT
 
-for(let i=0;i<2;i++){
+for(let i=0;i<5;i++){
+    // TIMELINE CONTAINER
+    const timeline = document.getElementById("timeline");
+
     // TWEET CONTAINER
     const tweet = document.createElement(`div`);
     tweet.id = "tweet";
-    tweet.className = "h-52 w-5/6 grid grid-rows-13 grid-cols-13 mt-6 p-4 rounded-2xl bg-white shadow-md";
+    tweet.className = "h-44 w-5/6 grid grid-rows-13 grid-cols-13 mt-3 p-4 rounded-xl bg-white shadow-md";
     timeline.appendChild(tweet);
     
     // UPVOTE/DOWNVOTE CONTAINER
@@ -175,7 +177,6 @@ for(let i=0;i<2;i++){
     replyText.className = "font-bold text-blue-900";
     replyText.textContent = "Reply";
     reply.appendChild(replyText);
-
 
 }
 
