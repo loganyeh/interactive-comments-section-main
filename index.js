@@ -1,28 +1,28 @@
 // ----- DOM ELEMENTS ----- 
 
 // VARIABLES
-const usersInformation = [];
+const usersInformation = [
+    {username: "amyrobson", avatar: "images/avatars/image-amyrobson.png", date: "1 month ago"},
+    {username: "juliusromo", avatar: "images/avatars/image-juliusomo.png", date: "2 days ago"},
+    {username: "maxblagun", avatar: "images/avatars/image-maxblagun.png", date: "2 weeks ago"},
+    {username: "ramsesmiron", avatar: "images/avatars/image-ramsesmiron.png", date: "1 week ago"},
+];
+    // TIMELINE CONTAINER DOM ELEMENT ---------------------------------
+const timeline = document.getElementById("timeline");
+const x = "";
+const y = "";
+let tweetCounter = 0;
 
 // EVENT LISTENERS
 
 // FUNCTIONS
 // x ≈ profile pic, y ≈ username
 function createTweet(x, y){
-    
-}
-
-// CALLS
-// WHEN ADDING OTHER TWEETS PUT THE IMAGES AND TWEETS USERNAMES INTO THE ARRAY AND
-// ITERATE THROUGH THAT
-
-let count = 1;
-for(let i=0;i<1;i++){
-    // TIMELINE CONTAINER ---------------------------------
-    const timeline = document.getElementById("timeline");
+    tweetCounter++;
 
     // TWEET CONTAINER ------------------------------------
     const tweet = document.createElement(`div`);
-    tweet.id = "tweet";
+    tweet.id = `tweet-${tweetCounter}`;
     tweet.className = "h-44 w-5/6 grid grid-rows-13 grid-cols-13 mt-3 p-4 rounded-xl bg-white shadow-md";
     timeline.appendChild(tweet);
     
@@ -106,6 +106,28 @@ for(let i=0;i<1;i++){
     replyText.textContent = "Reply";
     reply.appendChild(replyText);
 
+    username.addEventListener("click", () => {
+        console.log("clicked username... visiting profile");
+    });
+    replyImg.addEventListener("click", () => {
+        console.log("clicked reply button");
+    });
+
+    console.log(`Tweet ${tweetCounter}`)
+    return tweet;
+}
+function createReplay(x, y){
+    
+}
+
+// CALLS
+// WHEN ADDING OTHER TWEETS PUT THE IMAGES AND TWEETS USERNAMES INTO THE ARRAY AND
+// ITERATE THROUGH THAT
+
+let count = 1;
+for(let i=0;i<2;i++){
+    createTweet(x, y);
+
     // REPLY COMMENT CONTAINER -------------------------------
     const replyCommentContainer = document.createElement("div");
     replyCommentContainer.id = "reply-comment-container";
@@ -152,21 +174,12 @@ for(let i=0;i<1;i++){
     // DOM ELEMENTS
 
     // EVENT LISTENERS
-    username.addEventListener("click", () => {
-        console.log("clicked username... visiting profile");
-    });
-    replyImg.addEventListener("click", () => {
-        console.log("clicked reply button");
-    });
 
     // FUNCTIONS
 
     // CALLS
 
     // SANDBOX
-
-
-
 
 }
 
