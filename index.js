@@ -150,12 +150,15 @@ function createReply(){
     sendReplyButton.textContent = "SEND";
     sendButton.appendChild(sendReplyButton);
 }
+function quoteTweet(){
+    
+}
 
 let count = 1;
 for(let i=0;i<1;i++){
     tweetCounter++;
     createTweet(x, y);
-    // createReply(x, y);
+    createReply(x, y);
 
 }
 
