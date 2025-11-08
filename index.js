@@ -1,28 +1,22 @@
-// ----- DOM ELEMENTS ----- 
 
-// VARIABLES
-const usersInformation = [];
+// GLOBAL VARIABLES
+const usersInformation = [
+    {username: "amyrobson", avatar: "images/avatars/image-amyrobson.png", date: "1 month ago"},
+    {username: "juliusromo", avatar: "images/avatars/image-juliusomo.png", date: "2 days ago"},
+    {username: "maxblagun", avatar: "images/avatars/image-maxblagun.png", date: "2 weeks ago"},
+    {username: "ramsesmiron", avatar: "images/avatars/image-ramsesmiron.png", date: "1 week ago"},
+];
+const timeline = document.getElementById("timeline");
+const x = "";
+const y = "";
+let tweetCounter = 0;
 
-// EVENT LISTENERS
-
-// FUNCTIONS
-// x ≈ profile pic, y ≈ username
-function createTweet(x, y){
-    
-}
-
-// CALLS
-// WHEN ADDING OTHER TWEETS PUT THE IMAGES AND TWEETS USERNAMES INTO THE ARRAY AND
-// ITERATE THROUGH THAT
-
-let count = 1;
-for(let i=0;i<1;i++){
-    // TIMELINE CONTAINER ---------------------------------
-    const timeline = document.getElementById("timeline");
+function createTweet(){
+    // tweetCounter++;
 
     // TWEET CONTAINER ------------------------------------
     const tweet = document.createElement(`div`);
-    tweet.id = "tweet";
+    tweet.id = `tweet-${tweetCounter}`;
     tweet.className = "h-44 w-5/6 grid grid-rows-13 grid-cols-13 mt-3 p-4 rounded-xl bg-white shadow-md";
     timeline.appendChild(tweet);
     
@@ -58,14 +52,15 @@ for(let i=0;i<1;i++){
     const amyProfileImg = document.createElement("img");
     amyProfileImg.id = "profile-pic-1";
     amyProfileImg.className = "h-10 w-10 rounded-full";
-    amyProfileImg.src = "images/avatars/image-amyrobson.png";
+    // amyProfileImg.src = "images/avatars/image-amyrobson.png";
+    amyProfileImg.src = `${usersInformation[tweetCounter % 4].avatar}`;
     profileImg.appendChild(amyProfileImg);
 
     // USERNAME
     const username = document.createElement("div");
     username.id = "username";
     username.className = "row-start-2 row-end-4 col-start-4 col-end-7 -ml-2 font-bold cursor-pointer hover:underline z-10 overflow";
-    username.textContent = "amyrobson";
+    username.textContent = `${usersInformation[tweetCounter % 4].username}`;
     tweet.appendChild(username);
 
     // DATE 
@@ -106,6 +101,14 @@ for(let i=0;i<1;i++){
     replyText.textContent = "Reply";
     reply.appendChild(replyText);
 
+    username.addEventListener("click", () => {
+        console.log("clicked username... visiting profile");
+    });
+    replyImg.addEventListener("click", () => {
+        console.log("clicked reply button");
+    });
+}
+function createReply(){
     // REPLY COMMENT CONTAINER -------------------------------
     const replyCommentContainer = document.createElement("div");
     replyCommentContainer.id = "reply-comment-container";
@@ -119,7 +122,7 @@ for(let i=0;i<1;i++){
     const replyProfileImg = document.createElement("img");
     replyProfileImg.id = "reply-profile-img";
     replyProfileImg.className = "h-full w-full";
-    replyProfileImg.src = "images/avatars/image-juliusomo.png";
+    replyProfileImg.src = `${usersInformation[tweetCounter % 4].avatar}`;
     replyProfileImgContainer.appendChild(replyProfileImg);
     replyCommentContainer.appendChild(replyProfileImgContainer);
 
@@ -146,28 +149,15 @@ for(let i=0;i<1;i++){
     sendReplyButton.className = "h-full w-full ml-2 font-bold text-white bg-blue-900 rounded-xl cursor-pointer";
     sendReplyButton.textContent = "SEND";
     sendButton.appendChild(sendReplyButton);
+}
 
-    // ----------------------------------------------------------------
-
-    // DOM ELEMENTS
-
-    // EVENT LISTENERS
-    username.addEventListener("click", () => {
-        console.log("clicked username... visiting profile");
-    });
-    replyImg.addEventListener("click", () => {
-        console.log("clicked reply button");
-    });
-
-    // FUNCTIONS
-
-    // CALLS
-
-    // SANDBOX
-
-
-
+let count = 1;
+for(let i=0;i<2;i++){
+    tweetCounter++;
+    createTweet(x, y);
+    createReply(x, y);
 
 }
 
-// SANDBOX
+
+
