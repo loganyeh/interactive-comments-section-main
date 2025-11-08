@@ -1,10 +1,15 @@
 // ----- DOM ELEMENTS ----- 
 
 // VARIABLES
+const usersInformation = [];
 
 // EVENT LISTENERS
 
 // FUNCTIONS
+// x ≈ profile pic, y ≈ username
+function createTweet(x, y){
+    
+}
 
 // CALLS
 // WHEN ADDING OTHER TWEETS PUT THE IMAGES AND TWEETS USERNAMES INTO THE ARRAY AND
