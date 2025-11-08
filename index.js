@@ -152,10 +152,10 @@ function createReply(){
 }
 
 let count = 1;
-for(let i=0;i<2;i++){
+for(let i=0;i<1;i++){
     tweetCounter++;
     createTweet(x, y);
-    createReply(x, y);
+    // createReply(x, y);
 
 }
 
