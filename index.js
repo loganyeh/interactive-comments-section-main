@@ -102,12 +102,8 @@ function createTweet(){
     replyText.textContent = "Reply";
     reply.appendChild(replyText);
 
-    username.addEventListener("click", () => {
-        console.log("clicked username... visiting profile");
-    });
-    replyImg.addEventListener("click", () => {
-        console.log("clicked reply button");
-    });
+    userNameClick(username);
+    replyClick(replyImg);
 }
 function createReply(){
     tweetCounter++;
@@ -211,7 +207,7 @@ function quoteTweet(){
     // USERNAME
     const username = document.createElement("div");
     username.id = "username";
-    username.className = "row-start-2 row-end-4 col-start-4 col-end-7 font-bold z-10 overflow";
+    username.className = "row-start-2 row-end-4 col-start-4 col-end-7 font-bold hover:cursor-pointer hover:underline z-10 overflow";
     username.textContent = `${usersInformation[tweetCounter % 4].username}`;
     tweet.appendChild(username);
 
@@ -253,22 +249,38 @@ function quoteTweet(){
     replyText.textContent = "Reply";
     reply.appendChild(replyText);
 
-
+    userNameClick(username);
+    replyClick(replyImg);
 }
+// HELPER FUNCTIONS
+function userNameClick(username){
+    username.addEventListener("click", () => {
+        console.log("clicked username... visiting profile");
+    });
+}
+function replyClick(reply){
+    reply.addEventListener("click", () => {
+        console.log("clicked reply button");
+    });
+}
+// CREATE LOGIC FOR ADDING AND REMOVING STUFF
 
 let count = 1;
     // TIMELINE ARRAY
 const timelineArr = [];
 timelineArr.push(createTweet);
+timelineArr.push(quoteTweet);
 timelineArr.push(createTweet);
 timelineArr.push(quoteTweet);
-timelineArr.push(quoteTweet);
 timelineArr.push(createReply);
+// timelineArr.splice(2, 1);
 
 console.log(timelineArr);
 timelineArr.forEach((fn) => {
     fn();
 });
+
+
 
 
 
