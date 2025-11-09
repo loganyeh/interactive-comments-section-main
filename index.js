@@ -114,7 +114,7 @@ function createReply(){
     // REPLY COMMENT CONTAINER -------------------------------
     const replyCommentContainer = document.createElement("div");
     replyCommentContainer.id = "reply-comment-container";
-    replyCommentContainer.className = "h-44 w-5/6 grid grid-rows-13 grid-cols-13 mt-3 p-4 rounded-xl bg-white shadow-md";
+    replyCommentContainer.className = "h-40 w-5/6 grid grid-rows-13 grid-cols-13 mt-3 p-4 rounded-xl bg-white shadow-md";
     timeline.appendChild(replyCommentContainer);
 
     // PROFILE IMG 
@@ -123,7 +123,7 @@ function createReply(){
     replyProfileImgContainer.className = "row-start-2 row-end-6 col-start-1 col-end-2";
     const replyProfileImg = document.createElement("img");
     replyProfileImg.id = "reply-profile-img";
-    replyProfileImg.className = "h-full w-full";
+    replyProfileImg.className = "h-full w-full object-contain";
     replyProfileImg.src = `${usersInformation[tweetCounter % 4].avatar}`;
     replyProfileImgContainer.appendChild(replyProfileImg);
     replyCommentContainer.appendChild(replyProfileImgContainer);
