@@ -11,6 +11,7 @@ const x = "";
 const y = "";
 let tweetCounter = 0;
 
+// FUNCTIONS
 function createTweet(){
     tweetCounter++;
 
@@ -256,14 +257,18 @@ function quoteTweet(){
 }
 
 let count = 1;
-for(let i=0;i<1;i++){
-    createTweet(x, y);
-    createTweet(x, y);
-    quoteTweet();
-    quoteTweet();
-    createReply(x, y);
+    // TIMELINE ARRAY
+const timelineArr = [];
+timelineArr.push(createTweet);
+timelineArr.push(createTweet);
+timelineArr.push(quoteTweet);
+timelineArr.push(quoteTweet);
+timelineArr.push(createReply);
 
-}
+console.log(timelineArr);
+timelineArr.forEach((fn) => {
+    fn();
+});
 
 
 
