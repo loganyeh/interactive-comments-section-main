@@ -27,15 +27,17 @@ function createTweet(){
     profileImgHelper(tweet);
     // USERNAME
     usernameHelper(tweet);
+    const username = usernameHelper(tweet);
+    userNameClick(username);
     // DATE 
     dateHelper(tweet);
     // TEXT 
     textHelper(tweet);
     // REPLY 
     replyHelper(tweet);
+    const replyButton = replyHelper(tweet);
+    replyClick(replyButton, tweet.id);
 
-    // userNameClick(username);
-    // replyClick(replyImg, tweet.id);
 }
 function quoteTweet(){
     tweetCounter++;
@@ -62,15 +64,18 @@ function quoteTweet(){
     profileImgHelper(tweet);
     // USERNAME
     usernameHelper(tweet);
+    const username = usernameHelper(tweet);
+    userNameClick(username);
     // DATE 
     dateHelper(tweet);
     // TEXT 
     textHelper(tweet);
     // REPLY 
     replyHelper(tweet);
-
-    // userNameClick(username);
-    // replyClick(replyImg, quoteTweetContainer.id);
+    const replyButton = replyHelper(tweet);
+    replyClick(replyButton, tweet.id);
+    
+    
 }
 function createReply(){
     tweetCounter++;
@@ -200,6 +205,8 @@ function replyHelper(tweetParent){
     replyText.className = "font-bold text-blue-900";
     replyText.textContent = "Reply";
     reply.appendChild(replyText);
+
+    return replyButton;
 }
 function dateHelper(tweetParent){
     // DATE 
@@ -216,6 +223,8 @@ function usernameHelper(tweetParent){
     username.className = "row-start-2 row-end-4 col-start-4 col-end-7 font-bold cursor-pointer hover:underline z-10 overflow";
     username.textContent = `${usersInformation[tweetCounter % 4].username}`;
     tweetParent.appendChild(username);
+
+    return username;
 }
 
 // CREATE LOGIC FOR ADDING AND REMOVING STUFF
