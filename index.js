@@ -145,45 +145,8 @@ function createReply(){
     sendReplyButton.textContent = "SEND";
     sendButton.appendChild(sendReplyButton);
 }
+
 // HELPER FUNCTIONS
-function userNameClick(username){
-    username.addEventListener("click", () => {
-        console.log("clicked username... visiting profile");
-    });
-}
-let isClickedReply = false;
-
-function replyClick(reply, id){
-    let isClicked = false;
-
-    reply.addEventListener("click", () => {
-        isClicked = !isClicked;
-        console.log("clicked reply button");
-        const tweetID = Number(id.slice(6));
-
-        const [num1, num2] = randomNumGenerator();
-        let username = defaultUserProfiles[num1].username;
-        let profilePicture = defaultUserProfiles[num2].profilePicture;
-
-        if(isClicked){
-            tweetsArray.push(() => createTweet(username, profilePicture));
-            tweetsArray[tweetsArray.length - 1]();
-            console.log(tweetsArray);
-        }
-        else{
-            tweetsArray.pop();
-            
-            timeline.innerHTML = ``;
-            tweetCounter = 0;
-            count = 1;
-            tweetsArray.forEach((fn) => {
-                fn();
-            });
-            console.log(tweetsArray);
-        }
-
-    });
-}
 function voteContainer(tweetContainer){
     // UPVOTE/DOWNVOTE CONTAINER
     const upvoteContainer = document.createElement("div");
@@ -221,6 +184,15 @@ function profileImgHelper(tweetContainer, profilePicture){
     // amyProfileImg.src = "images/avatars/image-amyrobson.png";
     amyProfileImg.src = `${profilePicture}`;
     profileImg.appendChild(amyProfileImg);
+}
+function addUsername(tweetContainer, profileUsername){
+    const username = document.createElement("div");
+    username.id = "username";
+    username.className = "row-start-2 row-end-4 col-start-4 col-end-7 font-bold cursor-pointer hover:underline z-10 overflow";
+    username.textContent = `${profileUsername}`;
+    tweetContainer.appendChild(username);
+
+    return username;
 }
 function textHelper(tweetContainer){
     // TEXT 
@@ -268,15 +240,6 @@ function dateHelper(tweetContainer){
     dateCounter++;
     tweetContainer.appendChild(datePosted);
 }
-function addUsername(tweetContainer, profileUsername){
-    const username = document.createElement("div");
-    username.id = "username";
-    username.className = "row-start-2 row-end-4 col-start-4 col-end-7 font-bold cursor-pointer hover:underline z-10 overflow";
-    username.textContent = `${profileUsername}`;
-    tweetContainer.appendChild(username);
-
-    return username;
-}
 function randomNumGenerator(){
     const min = 0;
     const max = 4;
@@ -286,6 +249,46 @@ function randomNumGenerator(){
     y = Math.floor(Math.random() * max - min + min) + min;
 
     return [x, y];
+}
+
+// EVENT LISTENERS
+function userNameClick(username){
+    username.addEventListener("click", () => {
+        console.log("clicked username... visiting profile");
+    });
+}
+let isClickedReply = false;
+
+function replyClick(reply, id){
+    let isClicked = false;
+
+    reply.addEventListener("click", () => {
+        isClicked = !isClicked;
+        console.log("clicked reply button");
+        const tweetID = Number(id.slice(6));
+
+        const [num1, num2] = randomNumGenerator();
+        let username = defaultUserProfiles[num1].username;
+        let profilePicture = defaultUserProfiles[num2].profilePicture;
+
+        if(isClicked){
+            tweetsArray.push(() => createTweet(username, profilePicture));
+            tweetsArray[tweetsArray.length - 1]();
+            console.log(tweetsArray);
+        }
+        else{
+            tweetsArray.pop();
+            
+            timeline.innerHTML = ``;
+            tweetCounter = 0;
+            count = 1;
+            tweetsArray.forEach((fn) => {
+                fn();
+            });
+            console.log(tweetsArray);
+        }
+
+    });
 }
 
 
