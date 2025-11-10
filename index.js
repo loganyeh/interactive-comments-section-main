@@ -55,6 +55,8 @@ function createTweet(usernameID, avatar){
     // IF CLICKED TAKE THE CURRENT INDEX OF THE TWEET IN THE ARRAY AND THEN PUSH THE 
     // REPLY COMMENT RIGHT AFTER IT
 
+    console.log(`TWEET#: ${tweet.id}`);
+    // RETURN TWEET ID
 
 }
 function quoteTweet(usernameID, avatar){
@@ -63,7 +65,7 @@ function quoteTweet(usernameID, avatar){
     // QUOTE TWEET CONTAINER
     const quoteTweetContainer = document.createElement("div");
     timeline.appendChild(quoteTweetContainer);
-    quoteTweetContainer.id = `quote-tweet-container-${tweetCounter}`;
+    quoteTweetContainer.id = `quote-tweet-${tweetCounter}`;
     quoteTweetContainer.className = "h-44 w-5/6 flex justify-end mt-6 rounded-2xl";
     // QUOTE TWEET CONTAINER BORDER
     const quoteTweetContainerBorder = document.createElement("div");
@@ -93,6 +95,7 @@ function quoteTweet(usernameID, avatar){
     const replyButton = replyHelper(tweet);
     replyClick(replyButton, tweet.id);
 
+    console.log(`TWEET#: ${tweet.id}`);
     
 }
 function createReply(){
