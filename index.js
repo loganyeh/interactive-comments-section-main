@@ -28,7 +28,7 @@ tweetsArray.forEach((fn) => {
 });
 
 // MAIN (REGULAR) FUNCTIONS
-function createTweet(profileTweetID, profileUsername, profilePicture, datePosted){
+function createTweet(profileTwitterID, profileUsername, profilePicture, datePosted){
     tweetCounter++;
 
     // TWEET CONTAINER ------------------------------------
@@ -38,31 +38,27 @@ function createTweet(profileTweetID, profileUsername, profilePicture, datePosted
     timeline.appendChild(tweet);
                     
     // UPVOTE/DOWNVOTE CONTAINER
-    voteContainer(tweet);
+    addUpvotingSystem(tweet);
     // PROFILE IMG
-    profileImgHelper(tweet, profilePicture);
+    addProfilePicture(tweet, profilePicture);
     // USERNAME
     addUsername(tweet, profileUsername);
     const username = addUsername(tweet, profileUsername);
     userNameClick(username);
     // DATE 
-    dateHelper(tweet);
+    addDate(tweet);
     // TEXT 
-    textHelper(tweet);
+    addTwitterText(tweet);
     // REPLY 
-    replyHelper(tweet);
-    const replyButton = replyHelper(tweet);
+    addReplyTextField(tweet);
+    const replyButton = addReplyTextField(tweet);
     replyClick(replyButton, tweet.id);
-
-    // CREATE AN IF STATEMENT TO CHECK IF THE REPLY BUTTON IS CLICKED 
-    // IF CLICKED TAKE THE CURRENT INDEX OF THE TWEET IN THE ARRAY AND THEN PUSH THE 
-    // REPLY COMMENT RIGHT AFTER IT
 
     console.log(`TWEET#: ${tweet.id}`);
     // RETURN TWEET ID
 
 }
-function quoteTweet(profileUsername, profilePicture){
+function quoteTweet(profileTwitterID, profileUsername, profilePicture, datePosted){
     tweetCounter++;
 
     // QUOTE TWEET CONTAINER
@@ -82,20 +78,20 @@ function quoteTweet(profileUsername, profilePicture){
     quoteTweetContainerBorder.appendChild(tweet);
     
     // UPVOTE/DOWNVOTE CONTAINER
-    voteContainer(tweet);
+    addUpvotingSystem(tweet);
     // PROFILE IMG
-    profileImgHelper(tweet, profilePicture);
+    addProfilePicture(tweet, profilePicture);
     // USERNAME
     addUsername(tweet, profileUsername);
     const username = addUsername(tweet, profileUsername);
     userNameClick(username);
     // DATE 
-    dateHelper(tweet);
+    addDate(tweet);
     // TEXT 
-    textHelper(tweet);
+    addTwitterText(tweet);
     // REPLY 
-    replyHelper(tweet);
-    const replyButton = replyHelper(tweet);
+    addReplyTextField(tweet);
+    const replyButton = addReplyTextField(tweet);
     replyClick(replyButton, tweet.id);
 
     console.log(`TWEET#: ${tweet.id}`);
@@ -146,8 +142,20 @@ function createReply(){
     sendButton.appendChild(sendReplyButton);
 }
 
+// SMALL FUNCTIONS
+function randomNumGenerator(){
+    const min = 0;
+    const max = 4;
+    let x = 0;
+    let y = 0;
+    x = Math.floor(Math.random() * max - min + min) + min;
+    y = Math.floor(Math.random() * max - min + min) + min;
+
+    return [x, y];
+}
+
 // HELPER FUNCTIONS
-function voteContainer(tweetContainer){
+function addUpvotingSystem(tweetContainer){
     // UPVOTE/DOWNVOTE CONTAINER
     const upvoteContainer = document.createElement("div");
     upvoteContainer.id = "upvote container";
@@ -172,7 +180,7 @@ function voteContainer(tweetContainer){
     downvote.textContent = "-";
     upvoteContainer.appendChild(downvote);
 }
-function profileImgHelper(tweetContainer, profilePicture){
+function addProfilePicture(tweetContainer, profilePicture){
     // PROFILE IMG
     const profileImg = document.createElement("div");
     profileImg.id = "profile-img";
@@ -194,7 +202,19 @@ function addUsername(tweetContainer, profileUsername){
 
     return username;
 }
-function textHelper(tweetContainer){
+function addDate(tweetContainer){
+    // VARIABLES
+    let dateCounter = 1;
+
+    // DATE 
+    const datePosted = document.createElement("div");
+    datePosted.id = "datePosted";
+    datePosted.className = "row-start-2 row-end-4 col-start-7 col-end-10 text-gray-500 z-10 overflow";
+    datePosted.textContent = `${dateCounter} month ago`;
+    dateCounter++;
+    tweetContainer.appendChild(datePosted);
+}
+function addTwitterText(tweetContainer){
     // TEXT 
     const text = document.createElement("div");
     text.id = "text";
@@ -202,7 +222,7 @@ function textHelper(tweetContainer){
     text.textContent = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos quod atque magnam maiores, ipsam illo tempora, amet eaque provident neque exercitationem earum praesentium aliquam!"
     tweetContainer.appendChild(text);
 }
-function replyHelper(tweetContainer){
+function addReplyTextField(tweetContainer){
     // REPLY 
     const reply = document.createElement("div");
     reply.id = "reply";
@@ -227,28 +247,6 @@ function replyHelper(tweetContainer){
     reply.appendChild(replyText);
 
     return replyButton;
-}
-function dateHelper(tweetContainer){
-    // VARIABLES
-    let dateCounter = 1;
-
-    // DATE 
-    const datePosted = document.createElement("div");
-    datePosted.id = "datePosted";
-    datePosted.className = "row-start-2 row-end-4 col-start-7 col-end-10 text-gray-500 z-10 overflow";
-    datePosted.textContent = `${dateCounter} month ago`;
-    dateCounter++;
-    tweetContainer.appendChild(datePosted);
-}
-function randomNumGenerator(){
-    const min = 0;
-    const max = 4;
-    let x = 0;
-    let y = 0;
-    x = Math.floor(Math.random() * max - min + min) + min;
-    y = Math.floor(Math.random() * max - min + min) + min;
-
-    return [x, y];
 }
 
 // EVENT LISTENERS
