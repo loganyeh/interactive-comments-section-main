@@ -160,6 +160,9 @@ function replyClick(reply, id){
         else{
             timelineArr.pop();
             
+            timeline.innerHTML = ``;
+            tweetCounter = 0;
+            count = 1;
             timelineArr.forEach((fn) => {
                 fn();
             });
