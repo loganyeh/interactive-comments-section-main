@@ -11,16 +11,15 @@ const timeline = document.getElementById("timeline");
 const x = "";
 const y = "";
 let tweetCounter = 0;
+const [num1, num2] = randomNumGenerator();
     // TIMELINE ARRAY
-// const timelineArr = [createTweet, quoteTweet, createTweet, quoteTweet];
 const timelineArr = [
     () => createTweet(usersInformation[0].username, usersInformation[0].avatar),
-    () => createTweet(usersInformation[1].username, usersInformation[1].avatar),
-    () => createTweet(usersInformation[2].username, usersInformation[2].avatar),
+    () => quoteTweet(usersInformation[1].username, usersInformation[1].avatar),
     () => createTweet(usersInformation[3].username, usersInformation[3].avatar),
+    () => quoteTweet(usersInformation[2].username, usersInformation[2].avatar)
 ]
 
-// console.log(timelineArr.push(createTweet));
 timelineArr.forEach((fn) => {
     fn();
 });
@@ -58,7 +57,7 @@ function createTweet(usernameID, avatar){
 
 
 }
-function quoteTweet(){
+function quoteTweet(usernameID, avatar){
     tweetCounter++;
 
     // QUOTE TWEET CONTAINER
@@ -80,10 +79,10 @@ function quoteTweet(){
     // UPVOTE/DOWNVOTE CONTAINER
     voteContainer(tweet);
     // PROFILE IMG
-    profileImgHelper(tweet);
+    profileImgHelper(tweet, avatar);
     // USERNAME
-    usernameHelper(tweet);
-    const username = usernameHelper(tweet);
+    usernameHelper(tweet, usernameID);
+    const username = usernameHelper(tweet, usernameID);
     userNameClick(username);
     // DATE 
     dateHelper(tweet);
@@ -268,18 +267,15 @@ function usernameHelper(tweetParent, usernameID){
 
     return username;
 }
+function randomNumGenerator(){
+    const min = 0;
+    const max = 4;
+    let x = 0;
+    let y = 0;
+    x = Math.floor(Math.random() * max - min + min) + min;
+    y = Math.floor(Math.random() * max - min + min) + min;
 
-// timelineArr.push(createTweet);
-// timelineArr.push(quoteTweet);
-// timelineArr.push(createTweet);
-// timelineArr.push(quoteTweet);
-// timelineArr.forEach((fn) => {
-//     fn();
-// });
-
-
-
-
-
+    return [x, y];
+}
 
 
