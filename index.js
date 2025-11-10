@@ -6,10 +6,17 @@ const usersInformation = [
     {username: "maxblagun", avatar: "images/avatars/image-maxblagun.png", date: "2 weeks ago"},
     {username: "ramsesmiron", avatar: "images/avatars/image-ramsesmiron.png", date: "1 week ago"},
 ];
+let count = 1;
 const timeline = document.getElementById("timeline");
 const x = "";
 const y = "";
 let tweetCounter = 0;
+    // TIMELINE ARRAY
+const timelineArr = [createTweet, quoteTweet, createTweet, quoteTweet];
+console.log(timelineArr);
+timelineArr.forEach((fn) => {
+    fn();
+});
 
 // MAIN (REGULAR) FUNCTIONS
 function createTweet(){
@@ -27,15 +34,22 @@ function createTweet(){
     profileImgHelper(tweet);
     // USERNAME
     usernameHelper(tweet);
+    const username = usernameHelper(tweet);
+    userNameClick(username);
     // DATE 
     dateHelper(tweet);
     // TEXT 
     textHelper(tweet);
     // REPLY 
     replyHelper(tweet);
+    const replyButton = replyHelper(tweet);
+    replyClick(replyButton, tweet.id);
 
-    // userNameClick(username);
-    // replyClick(replyImg, tweet.id);
+    // CREATE AN IF STATEMENT TO CHECK IF THE REPLY BUTTON IS CLICKED 
+    // IF CLICKED TAKE THE CURRENT INDEX OF THE TWEET IN THE ARRAY AND THEN PUSH THE 
+    // REPLY COMMENT RIGHT AFTER IT
+
+
 }
 function quoteTweet(){
     tweetCounter++;
@@ -62,15 +76,18 @@ function quoteTweet(){
     profileImgHelper(tweet);
     // USERNAME
     usernameHelper(tweet);
+    const username = usernameHelper(tweet);
+    userNameClick(username);
     // DATE 
     dateHelper(tweet);
     // TEXT 
     textHelper(tweet);
     // REPLY 
     replyHelper(tweet);
+    const replyButton = replyHelper(tweet);
+    replyClick(replyButton, tweet.id);
 
-    // userNameClick(username);
-    // replyClick(replyImg, quoteTweetContainer.id);
+    
 }
 function createReply(){
     tweetCounter++;
@@ -122,14 +139,37 @@ function userNameClick(username){
         console.log("clicked username... visiting profile");
     });
 }
+let isClickedReply = false;
+
 function replyClick(reply, id){
+    let isClicked = false;
+
     reply.addEventListener("click", () => {
+        isClicked = !isClicked;
         console.log("clicked reply button");
-        retrieveID(id);
+        const tweetID = Number(id.slice(6));
+
+        if(isClicked){
+            timelineArr.push(createTweet);
+            // timelineArr.forEach((fn) => {
+            //     fn();
+            // });
+            timelineArr[timelineArr.length - 1]();
+            console.log(timelineArr);
+        }
+        else{
+            timelineArr.pop();
+            
+            timeline.innerHTML = ``;
+            tweetCounter = 0;
+            count = 1;
+            timelineArr.forEach((fn) => {
+                fn();
+            });
+            console.log(timelineArr);
+        }
+
     });
-}
-function retrieveID(id){
-    console.log(`TWEET: #${id}`);
 }
 function voteContainer(tweetParent){
     // UPVOTE/DOWNVOTE CONTAINER
@@ -200,6 +240,8 @@ function replyHelper(tweetParent){
     replyText.className = "font-bold text-blue-900";
     replyText.textContent = "Reply";
     reply.appendChild(replyText);
+
+    return replyButton;
 }
 function dateHelper(tweetParent){
     // DATE 
@@ -216,24 +258,19 @@ function usernameHelper(tweetParent){
     username.className = "row-start-2 row-end-4 col-start-4 col-end-7 font-bold cursor-pointer hover:underline z-10 overflow";
     username.textContent = `${usersInformation[tweetCounter % 4].username}`;
     tweetParent.appendChild(username);
+
+    return username;
 }
 
-// CREATE LOGIC FOR ADDING AND REMOVING STUFF
+// timelineArr.push(createTweet);
+// timelineArr.push(quoteTweet);
+// timelineArr.push(createTweet);
+// timelineArr.push(quoteTweet);
+// timelineArr.forEach((fn) => {
+//     fn();
+// });
 
-let count = 1;
-    // TIMELINE ARRAY
-const timelineArr = [];
-timelineArr.push(createTweet);
-timelineArr.push(quoteTweet);
-timelineArr.push(createTweet);
-timelineArr.push(quoteTweet);
-timelineArr.push(createReply);
-// timelineArr.splice(2, 1);
 
-console.log(timelineArr);
-timelineArr.forEach((fn) => {
-    fn();
-});
 
 
 
