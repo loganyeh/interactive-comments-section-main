@@ -11,7 +11,7 @@ const timeline = document.getElementById("timeline");
 const x = "";
 const y = "";
 let tweetCounter = 0;
-const [num1, num2] = randomNumGenerator();
+// const [num1, num2] = randomNumGenerator();
     // TIMELINE ARRAY
 const timelineArr = [
     () => createTweet(usersInformation[0].username, usersInformation[0].avatar),
@@ -155,11 +155,12 @@ function replyClick(reply, id){
         console.log("clicked reply button");
         const tweetID = Number(id.slice(6));
 
+        const [num1, num2] = randomNumGenerator();
+        let username = usersInformation[num1].username;
+        let avatar = usersInformation[num2].avatar;
+
         if(isClicked){
-            timelineArr.push(createTweet);
-            // timelineArr.forEach((fn) => {
-            //     fn();
-            // });
+            timelineArr.push(() => createTweet(username, avatar));
             timelineArr[timelineArr.length - 1]();
             console.log(timelineArr);
         }
