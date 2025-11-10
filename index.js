@@ -12,14 +12,18 @@ const x = "";
 const y = "";
 let tweetCounter = 0;
     // TIMELINE ARRAY
-const timelineArr = [createTweet, quoteTweet, createTweet, quoteTweet];
-console.log(timelineArr);
+// const timelineArr = [createTweet, quoteTweet, createTweet, quoteTweet];
+const timelineArr = [
+    () => createTweet(usersInformation[0].username),
+]
+
+// console.log(timelineArr.push(createTweet));
 timelineArr.forEach((fn) => {
     fn();
 });
 
 // MAIN (REGULAR) FUNCTIONS
-function createTweet(){
+function createTweet(usernameID){
     tweetCounter++;
 
     // TWEET CONTAINER ------------------------------------
@@ -33,8 +37,8 @@ function createTweet(){
     // PROFILE IMG
     profileImgHelper(tweet);
     // USERNAME
-    usernameHelper(tweet);
-    const username = usernameHelper(tweet);
+    usernameHelper(tweet, usernameID);
+    const username = usernameHelper(tweet, usernameID);
     userNameClick(username);
     // DATE 
     dateHelper(tweet);
@@ -252,11 +256,11 @@ function dateHelper(tweetParent){
     count++;
     tweetParent.appendChild(date);
 }
-function usernameHelper(tweetParent){
+function usernameHelper(tweetParent, usernameID){
     const username = document.createElement("div");
     username.id = "username";
     username.className = "row-start-2 row-end-4 col-start-4 col-end-7 font-bold cursor-pointer hover:underline z-10 overflow";
-    username.textContent = `${usersInformation[tweetCounter % 4].username}`;
+    username.textContent = `${usernameID}`;
     tweetParent.appendChild(username);
 
     return username;
