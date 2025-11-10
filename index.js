@@ -8,10 +8,10 @@ const defaultUserProfiles = [
     {id: 4, username: "Greg", avatar: "images/avatars/image-ramsesmiron.png", date: "1 year ago"},
 ];
 const newUserProfiles = [
-    {id: 1, username: "Lamar", avatar: "images/avatars/image-amyrobson.png", date: "Week 8"},
-    {id: 2, username: "Allen", avatar: "images/avatars/image-juliusomo.png", date: "Week 3"},
-    {id: 3, username: "Stafford", avatar: "images/avatars/image-maxblagun.png", date: "Week 2"},
-    {id: 4, username: "Baker", avatar: "images/avatars/image-ramsesmiron.png", date: "BYE Week"},
+    {id: 5, username: "Lamar", avatar: "images/avatars/image-amyrobson.png", date: "Week 8"},
+    {id: 6, username: "Allen", avatar: "images/avatars/image-juliusomo.png", date: "Week 3"},
+    {id: 7, username: "Stafford", avatar: "images/avatars/image-maxblagun.png", date: "Week 2"},
+    {id: 8, username: "Baker", avatar: "images/avatars/image-ramsesmiron.png", date: "BYE Week"},
 ];
 let tweetCounter = 0;
 // const [num1, num2] = randomNumGenerator();
