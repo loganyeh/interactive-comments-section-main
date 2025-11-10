@@ -23,19 +23,14 @@ function createTweet(){
                     
     // UPVOTE/DOWNVOTE CONTAINER
     voteContainer(tweet);
-
     // PROFILE IMG
     profileImgHelper(tweet);
-
     // USERNAME
     usernameHelper(tweet);
-
     // DATE 
     dateHelper(tweet);
-
     // TEXT 
     textHelper(tweet);
-
     // REPLY 
     replyHelper(tweet);
 
@@ -63,19 +58,14 @@ function quoteTweet(){
     
     // UPVOTE/DOWNVOTE CONTAINER
     voteContainer(tweet);
-
     // PROFILE IMG
     profileImgHelper(tweet);
-
     // USERNAME
     usernameHelper(tweet);
-
     // DATE 
     dateHelper(tweet);
-
     // TEXT 
     textHelper(tweet);
-
     // REPLY 
     replyHelper(tweet);
 
@@ -126,7 +116,6 @@ function createReply(){
     sendReplyButton.textContent = "SEND";
     sendButton.appendChild(sendReplyButton);
 }
-
 // HELPER FUNCTIONS
 function userNameClick(username){
     username.addEventListener("click", () => {
