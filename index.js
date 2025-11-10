@@ -6,13 +6,17 @@ const usersInformation = [
     {username: "maxblagun", avatar: "images/avatars/image-maxblagun.png", date: "2 weeks ago"},
     {username: "ramsesmiron", avatar: "images/avatars/image-ramsesmiron.png", date: "1 week ago"},
 ];
+let count = 1;
 const timeline = document.getElementById("timeline");
 const x = "";
 const y = "";
 let tweetCounter = 0;
     // TIMELINE ARRAY
-const timelineArr = [];
-
+const timelineArr = [createTweet, quoteTweet, createTweet, quoteTweet];
+console.log(timelineArr);
+timelineArr.forEach((fn) => {
+    fn();
+});
 
 // MAIN (REGULAR) FUNCTIONS
 function createTweet(){
@@ -141,19 +145,26 @@ function replyClick(reply, id){
     let isClicked = false;
 
     reply.addEventListener("click", () => {
+        isClicked = !isClicked;
         console.log("clicked reply button");
         const tweetID = Number(id.slice(6));
-        isClickedReply = true;
 
         if(isClicked){
-            
+            timelineArr.push(createTweet);
+            // timelineArr.forEach((fn) => {
+            //     fn();
+            // });
+            timelineArr[timelineArr.length - 1]();
+            console.log(timelineArr);
         }
-
-
-        
-        timelineArr.push(createTweet);
-        console.log(timelineArr);
-        timelineArr[timelineArr.length - 1]();
+        else{
+            timelineArr.pop();
+            
+            timelineArr.forEach((fn) => {
+                fn();
+            });
+            console.log(timelineArr);
+        }
 
     });
 }
@@ -248,22 +259,13 @@ function usernameHelper(tweetParent){
     return username;
 }
 
-// CREATE LOGIC FOR ADDING AND REMOVING STUFF
-
-let count = 1;
-    // TIMELINE ARRAY
-// const timelineArr = [];
-timelineArr.push(createTweet);
-timelineArr.push(quoteTweet);
-timelineArr.push(createTweet);
-timelineArr.push(quoteTweet);
-// timelineArr.push(createReply);
-// timelineArr.splice(2, 1);
-
-console.log(timelineArr);
-timelineArr.forEach((fn) => {
-    fn();
-});
+// timelineArr.push(createTweet);
+// timelineArr.push(quoteTweet);
+// timelineArr.push(createTweet);
+// timelineArr.push(quoteTweet);
+// timelineArr.forEach((fn) => {
+//     fn();
+// });
 
 
 
