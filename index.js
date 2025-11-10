@@ -135,28 +135,34 @@ function userNameClick(username){
         console.log("clicked username... visiting profile");
     });
 }
+let isClickedReply = false;
+
 function replyClick(reply, id){
-    
     reply.addEventListener("click", () => {
+        isClickedReply = !isClickedReply;
         console.log("clicked reply button");
         // id ≈ gets the tweet-#
         // id.slice(6) ≈ gets the number only
         const tweetID = Number(id.slice(6));
         isClickedReply = true;
 
-        timelineArr.splice(tweetID + 1, createTweet());
+        // timelineArr.splice(tweetID + 2, 0, createTweet());
         console.log(tweetID);
         console.log(typeof tweetID);
 
-        // if(isClickedReply){
-        //     console.log(`replyClick: ${tweetID}`);
-        // }
-        // else if (!isClickedReply){
-        //     isClickedReply = false; 
-        //     timeline.
-        // }
+        if(isClickedReply){
+            // timelineArr.splice(tweetID + 2, 0, createTweet());
+            timelineArr.push(createTweet);
+        }
+        else{
+            timelineArr.pop();
+            // isClickedReply = false;
+        }
 
-
+        console.log(timelineArr);
+        timelineArr.forEach((fn) => {
+            fn();
+        });
     });
 }
 function voteContainer(tweetParent){
@@ -266,6 +272,8 @@ console.log(timelineArr);
 timelineArr.forEach((fn) => {
     fn();
 });
+
+
 
 
 
