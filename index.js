@@ -14,7 +14,10 @@ let tweetCounter = 0;
     // TIMELINE ARRAY
 // const timelineArr = [createTweet, quoteTweet, createTweet, quoteTweet];
 const timelineArr = [
-    () => createTweet(usersInformation[0].username),
+    () => createTweet(usersInformation[0].username, usersInformation[0].avatar),
+    () => createTweet(usersInformation[1].username, usersInformation[1].avatar),
+    () => createTweet(usersInformation[2].username, usersInformation[2].avatar),
+    () => createTweet(usersInformation[3].username, usersInformation[3].avatar),
 ]
 
 // console.log(timelineArr.push(createTweet));
@@ -23,7 +26,7 @@ timelineArr.forEach((fn) => {
 });
 
 // MAIN (REGULAR) FUNCTIONS
-function createTweet(usernameID){
+function createTweet(usernameID, avatar){
     tweetCounter++;
 
     // TWEET CONTAINER ------------------------------------
@@ -35,7 +38,7 @@ function createTweet(usernameID){
     // UPVOTE/DOWNVOTE CONTAINER
     voteContainer(tweet);
     // PROFILE IMG
-    profileImgHelper(tweet);
+    profileImgHelper(tweet, avatar);
     // USERNAME
     usernameHelper(tweet, usernameID);
     const username = usernameHelper(tweet, usernameID);
@@ -200,7 +203,7 @@ function voteContainer(tweetParent){
     downvote.textContent = "-";
     upvoteContainer.appendChild(downvote);
 }
-function profileImgHelper(tweetParent){
+function profileImgHelper(tweetParent, avatar){
     // PROFILE IMG
     const profileImg = document.createElement("div");
     profileImg.id = "profile-img";
@@ -210,7 +213,7 @@ function profileImgHelper(tweetParent){
     amyProfileImg.id = "profile-pic-1";
     amyProfileImg.className = "h-10 w-10 rounded-full";
     // amyProfileImg.src = "images/avatars/image-amyrobson.png";
-    amyProfileImg.src = `${usersInformation[tweetCounter % 4].avatar}`;
+    amyProfileImg.src = `${avatar}`;
     profileImg.appendChild(amyProfileImg);
 }
 function textHelper(tweetParent){
