@@ -11,7 +11,7 @@ const x = "";
 const y = "";
 let tweetCounter = 0;
 
-// FUNCTIONS
+// MAIN (REGULAR) FUNCTIONS
 function createTweet(){
     tweetCounter++;
 
@@ -20,30 +20,9 @@ function createTweet(){
     tweet.id = `tweet-${tweetCounter}`;
     tweet.className = "h-44 w-5/6 grid grid-rows-13 grid-cols-13 mt-3 p-4 rounded-xl bg-white shadow-md";
     timeline.appendChild(tweet);
-    
+                    
     // UPVOTE/DOWNVOTE CONTAINER
-    const upvoteContainer = document.createElement("div");
-    upvoteContainer.id = "upvote container";
-    upvoteContainer.className = "row-start-2 row-end-11 col-start-1 col-end-2 text-gray-50 bg-gray-200 rounded-lg";
-    tweet.appendChild(upvoteContainer);
-
-    const upvote = document.createElement("div");
-    upvote.id = "upvote";
-    upvote.className = "h-1/3 w-full flex justify-center items-center font-bold text-gray-500 rounded-t-lg hover:bg-gray-500 active:bg-gray-400 hover:text-gray-50 active:text-white cursor-pointer";
-    upvote.textContent = "+";
-    upvoteContainer.appendChild(upvote);
-
-    const totalUpvotes = document.createElement("div");
-    totalUpvotes.id = "total-upvotes";
-    totalUpvotes.className = "h-1/3 w-full flex justify-center items-center font-bold text-blue-800";
-    totalUpvotes.textContent = "12";
-    upvoteContainer.appendChild(totalUpvotes);
-
-    const downvote = document.createElement("div");
-    downvote.id = "downvote";
-    downvote.className = "h-1/3 w-full flex justify-center items-center font-bold text-gray-500 rounded-b-lg hover:bg-gray-500 active:bg-gray-400 hover:text-gray-50 active:text-white cursor-pointer";
-    downvote.textContent = "-";
-    upvoteContainer.appendChild(downvote);
+    voteContainer(tweet);
 
     // PROFILE IMG
     const profileImg = document.createElement("div");
@@ -103,14 +82,14 @@ function createTweet(){
     reply.appendChild(replyText);
 
     userNameClick(username);
-    replyClick(replyImg);
+    replyClick(replyImg, tweet.id);
 }
 function createReply(){
     tweetCounter++;
 
     // REPLY COMMENT CONTAINER -------------------------------
     const replyCommentContainer = document.createElement("div");
-    replyCommentContainer.id = "reply-comment-container";
+    replyCommentContainer.id = `reply-comment-container-${tweetCounter}`;
     replyCommentContainer.className = "h-40 w-5/6 grid grid-rows-13 grid-cols-13 mt-3 p-4 rounded-xl bg-white shadow-md";
     timeline.appendChild(replyCommentContainer);
 
@@ -155,7 +134,7 @@ function quoteTweet(){
     // QUOTE TWEET CONTAINER
     const quoteTweetContainer = document.createElement("div");
     timeline.appendChild(quoteTweetContainer);
-    quoteTweetContainer.id = "quote-tweet-container";
+    quoteTweetContainer.id = `quote-tweet-container-${tweetCounter}`;
     quoteTweetContainer.className = "h-44 w-5/6 flex justify-end mt-6 rounded-2xl";
     // QUOTE TWEET CONTAINER BORDER
     const quoteTweetContainerBorder = document.createElement("div");
@@ -169,28 +148,7 @@ function quoteTweet(){
     quoteTweetContainerBorder.appendChild(tweet);
     
     // UPVOTE/DOWNVOTE CONTAINER
-    const upvoteContainer = document.createElement("div");
-    upvoteContainer.id = "upvote container";
-    upvoteContainer.className = "row-start-2 row-end-11 col-start-1 col-end-2 text-gray-50 bg-gray-200 rounded-lg";
-    tweet.appendChild(upvoteContainer);
-
-    const upvote = document.createElement("div");
-    upvote.id = "upvote";
-    upvote.className = "h-1/3 w-full flex justify-center items-center font-bold text-gray-500 rounded-t-lg hover:bg-gray-500 active:bg-gray-400 hover:text-gray-50 active:text-white cursor-pointer";
-    upvote.textContent = "+";
-    upvoteContainer.appendChild(upvote);
-
-    const totalUpvotes = document.createElement("div");
-    totalUpvotes.id = "total-upvotes";
-    totalUpvotes.className = "h-1/3 w-full flex justify-center items-center font-bold text-blue-800";
-    totalUpvotes.textContent = "12";
-    upvoteContainer.appendChild(totalUpvotes);
-
-    const downvote = document.createElement("div");
-    downvote.id = "downvote";
-    downvote.className = "h-1/3 w-full flex justify-center items-center font-bold text-gray-500 rounded-b-lg hover:bg-gray-500 active:bg-gray-400 hover:text-gray-50 active:text-white cursor-pointer";
-    downvote.textContent = "-";
-    upvoteContainer.appendChild(downvote);
+    voteContainer(tweet);
 
     // PROFILE IMG
     const profileImg = document.createElement("div");
@@ -250,19 +208,53 @@ function quoteTweet(){
     reply.appendChild(replyText);
 
     userNameClick(username);
-    replyClick(replyImg);
+    replyClick(replyImg, quoteTweetContainer.id);
 }
+
 // HELPER FUNCTIONS
 function userNameClick(username){
     username.addEventListener("click", () => {
         console.log("clicked username... visiting profile");
     });
 }
-function replyClick(reply){
+function replyClick(reply, id){
     reply.addEventListener("click", () => {
         console.log("clicked reply button");
+        retrieveID(id);
     });
 }
+function retrieveID(id){
+    console.log(`TWEET: #${id}`);
+}
+function voteContainer(tweetParent){
+    // UPVOTE/DOWNVOTE CONTAINER
+    const upvoteContainer = document.createElement("div");
+    upvoteContainer.id = "upvote container";
+    upvoteContainer.className = "row-start-2 row-end-11 col-start-1 col-end-2 text-gray-50 bg-gray-200 rounded-lg";
+    tweetParent.appendChild(upvoteContainer);
+
+    const upvote = document.createElement("div");
+    upvote.id = "upvote";
+    upvote.className = "h-1/3 w-full flex justify-center items-center font-bold text-gray-500 rounded-t-lg hover:bg-gray-500 active:bg-gray-400 hover:text-gray-50 active:text-white cursor-pointer";
+    upvote.textContent = "+";
+    upvoteContainer.appendChild(upvote);
+
+    const totalUpvotes = document.createElement("div");
+    totalUpvotes.id = "total-upvotes";
+    totalUpvotes.className = "h-1/3 w-full flex justify-center items-center font-bold text-blue-800";
+    totalUpvotes.textContent = "12";
+    upvoteContainer.appendChild(totalUpvotes);
+
+    const downvote = document.createElement("div");
+    downvote.id = "downvote";
+    downvote.className = "h-1/3 w-full flex justify-center items-center font-bold text-gray-500 rounded-b-lg hover:bg-gray-500 active:bg-gray-400 hover:text-gray-50 active:text-white cursor-pointer";
+    downvote.textContent = "-";
+    upvoteContainer.appendChild(downvote);
+}
+function profileImgHelper(){
+
+}
+
 // CREATE LOGIC FOR ADDING AND REMOVING STUFF
 
 let count = 1;
