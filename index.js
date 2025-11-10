@@ -25,64 +25,62 @@ function createTweet(){
     voteContainer(tweet);
 
     // PROFILE IMG
-    const profileImg = document.createElement("div");
-    profileImg.id = "profile-img";
-    profileImg.className = "flex justify-center items-center row-start-2 row-end-4 col-start-2 col-end-4";
-    tweet.appendChild(profileImg);
-    const amyProfileImg = document.createElement("img");
-    amyProfileImg.id = "profile-pic-1";
-    amyProfileImg.className = "h-10 w-10 rounded-full";
-    // amyProfileImg.src = "images/avatars/image-amyrobson.png";
-    amyProfileImg.src = `${usersInformation[tweetCounter % 4].avatar}`;
-    profileImg.appendChild(amyProfileImg);
+    profileImgHelper(tweet);
 
     // USERNAME
-    const username = document.createElement("div");
-    username.id = "username";
-    username.className = "row-start-2 row-end-4 col-start-4 col-end-7 -ml-2 font-bold cursor-pointer hover:underline z-10 overflow";
-    username.textContent = `${usersInformation[tweetCounter % 4].username}`;
-    tweet.appendChild(username);
+    usernameHelper(tweet);
 
     // DATE 
-    const date = document.createElement("div");
-    date.id = "date";
-    date.className = "row-start-2 row-end-4 col-start-7 col-end-10 -ml-11 text-gray-500 z-10 overflow";
-    date.textContent = `${count} month ago`;
-    count++;
-    tweet.appendChild(date);
+    dateHelper(tweet);
 
     // TEXT 
-    const text = document.createElement("div");
-    text.id = "text";
-    text.className = "row-start-5 row-end-12 col-start-2 col-end-14 mt-2 pl-6 text-gray-500 overflow-y-visible"
-    text.textContent = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos quod atque magnam maiores, ipsam illo tempora, amet eaque provident neque exercitationem earum praesentium aliquam animi! Labore inventore rem error aut?"
-    tweet.appendChild(text);
+    textHelper(tweet);
 
     // REPLY 
-    const reply = document.createElement("div");
-    reply.id = "reply";
-    reply.className = "row-start-2 row-end-4 col-start-11 col-end-14 pr-2 text-right";
-    tweet.appendChild(reply);
+    replyHelper(tweet);
 
-        // REPLY BUTTON
-    const replyButton = document.createElement("button");
-    replyButton.id = "reply-button";
-    replyButton.className = "cursor-pointer pr-1";
-    reply.appendChild(replyButton);
+    // userNameClick(username);
+    // replyClick(replyImg, tweet.id);
+}
+function quoteTweet(){
+    tweetCounter++;
 
-    const replyImg = document.createElement("img");
-    replyImg.src = "images/icon-reply.svg";
-    replyButton.appendChild(replyImg);
+    // QUOTE TWEET CONTAINER
+    const quoteTweetContainer = document.createElement("div");
+    timeline.appendChild(quoteTweetContainer);
+    quoteTweetContainer.id = `quote-tweet-container-${tweetCounter}`;
+    quoteTweetContainer.className = "h-44 w-5/6 flex justify-end mt-6 rounded-2xl";
+    // QUOTE TWEET CONTAINER BORDER
+    const quoteTweetContainerBorder = document.createElement("div");
+    quoteTweetContainer.appendChild(quoteTweetContainerBorder);
+    quoteTweetContainerBorder.id = "quote-tweet-container-border";
+    quoteTweetContainerBorder.className = "h-44 w-11/12 flex justify-end border-l-2 border-gray-200";
+    // TWEET CONTAINER
+    const tweet = document.createElement(`div`);
+    tweet.id = `tweet-${tweetCounter}`;
+    tweet.className = "h-full w-11/12 grid grid-rows-13 grid-cols-13 p-4 rounded-2xl bg-white shadow-md";
+    quoteTweetContainerBorder.appendChild(tweet);
+    
+    // UPVOTE/DOWNVOTE CONTAINER
+    voteContainer(tweet);
 
-        // REPLY SPAN
-    const replyText = document.createElement("span");
-    replyText.id = "reply-text";
-    replyText.className = "font-bold text-blue-900";
-    replyText.textContent = "Reply";
-    reply.appendChild(replyText);
+    // PROFILE IMG
+    profileImgHelper(tweet);
 
-    userNameClick(username);
-    replyClick(replyImg, tweet.id);
+    // USERNAME
+    usernameHelper(tweet);
+
+    // DATE 
+    dateHelper(tweet);
+
+    // TEXT 
+    textHelper(tweet);
+
+    // REPLY 
+    replyHelper(tweet);
+
+    // userNameClick(username);
+    // replyClick(replyImg, quoteTweetContainer.id);
 }
 function createReply(){
     tweetCounter++;
@@ -128,88 +126,6 @@ function createReply(){
     sendReplyButton.textContent = "SEND";
     sendButton.appendChild(sendReplyButton);
 }
-function quoteTweet(){
-    tweetCounter++;
-
-    // QUOTE TWEET CONTAINER
-    const quoteTweetContainer = document.createElement("div");
-    timeline.appendChild(quoteTweetContainer);
-    quoteTweetContainer.id = `quote-tweet-container-${tweetCounter}`;
-    quoteTweetContainer.className = "h-44 w-5/6 flex justify-end mt-6 rounded-2xl";
-    // QUOTE TWEET CONTAINER BORDER
-    const quoteTweetContainerBorder = document.createElement("div");
-    quoteTweetContainer.appendChild(quoteTweetContainerBorder);
-    quoteTweetContainerBorder.id = "quote-tweet-container-border";
-    quoteTweetContainerBorder.className = "h-44 w-11/12 flex justify-end border-l-2 border-gray-200";
-    // TWEET CONTAINER
-    const tweet = document.createElement(`div`);
-    tweet.id = `tweet-${tweetCounter}`;
-    tweet.className = "h-full w-11/12 grid grid-rows-13 grid-cols-13 p-4 rounded-2xl bg-white shadow-md";
-    quoteTweetContainerBorder.appendChild(tweet);
-    
-    // UPVOTE/DOWNVOTE CONTAINER
-    voteContainer(tweet);
-
-    // PROFILE IMG
-    const profileImg = document.createElement("div");
-    profileImg.id = "profile-img";
-    profileImg.className = "flex justify-center items-center row-start-2 row-end-4 col-start-2 col-end-4";
-    tweet.appendChild(profileImg);
-    const amyProfileImg = document.createElement("img");
-    amyProfileImg.id = "profile-pic-1";
-    amyProfileImg.className = "h-10 w-10 rounded-full";
-    // amyProfileImg.src = "images/avatars/image-amyrobson.png";
-    amyProfileImg.src = `${usersInformation[tweetCounter % 4].avatar}`;
-    profileImg.appendChild(amyProfileImg);
-
-    // USERNAME
-    const username = document.createElement("div");
-    username.id = "username";
-    username.className = "row-start-2 row-end-4 col-start-4 col-end-7 font-bold hover:cursor-pointer hover:underline z-10 overflow";
-    username.textContent = `${usersInformation[tweetCounter % 4].username}`;
-    tweet.appendChild(username);
-
-    // DATE 
-    const date = document.createElement("div");
-    date.id = "date";
-    date.className = "row-start-2 row-end-4 col-start-7 col-end-10 -ml-2 text-gray-500 z-10 overflow";
-    date.textContent = `${count} month ago`;
-    count++;
-    tweet.appendChild(date);
-
-    // TEXT 
-    const text = document.createElement("div");
-    text.id = "text";
-    text.className = "row-start-5 row-end-12 col-start-2 col-end-14 mt-2 pl-6 text-gray-500 overflow-y-visible"
-    text.textContent = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos quod atque magnam maiores, ipsam illo tempora, amet eaque provident neque exercitationem earum praesentium aliquam animi!";
-    tweet.appendChild(text);
-
-    // REPLY 
-    const reply = document.createElement("div");
-    reply.id = "reply";
-    reply.className = "row-start-2 row-end-4 col-start-11 col-end-14 pr-2 text-right";
-    tweet.appendChild(reply);
-
-        // REPLY BUTTON
-    const replyButton = document.createElement("button");
-    replyButton.id = "reply-button";
-    replyButton.className = "cursor-pointer pr-1";
-    reply.appendChild(replyButton);
-
-    const replyImg = document.createElement("img");
-    replyImg.src = "images/icon-reply.svg";
-    replyButton.appendChild(replyImg);
-
-        // REPLY SPAN
-    const replyText = document.createElement("span");
-    replyText.id = "reply-text";
-    replyText.className = "font-bold text-blue-900";
-    replyText.textContent = "Reply";
-    reply.appendChild(replyText);
-
-    userNameClick(username);
-    replyClick(replyImg, quoteTweetContainer.id);
-}
 
 // HELPER FUNCTIONS
 function userNameClick(username){
@@ -251,8 +167,66 @@ function voteContainer(tweetParent){
     downvote.textContent = "-";
     upvoteContainer.appendChild(downvote);
 }
-function profileImgHelper(){
+function profileImgHelper(tweetParent){
+    // PROFILE IMG
+    const profileImg = document.createElement("div");
+    profileImg.id = "profile-img";
+    profileImg.className = "flex justify-center items-center row-start-2 row-end-4 col-start-2 col-end-4";
+    tweetParent.appendChild(profileImg);
+    const amyProfileImg = document.createElement("img");
+    amyProfileImg.id = "profile-pic-1";
+    amyProfileImg.className = "h-10 w-10 rounded-full";
+    // amyProfileImg.src = "images/avatars/image-amyrobson.png";
+    amyProfileImg.src = `${usersInformation[tweetCounter % 4].avatar}`;
+    profileImg.appendChild(amyProfileImg);
+}
+function textHelper(tweetParent){
+    // TEXT 
+    const text = document.createElement("div");
+    text.id = "text";
+    text.className = "row-start-5 row-end-12 col-start-2 col-end-14 mt-2 pl-6 text-gray-500 overflow-y-visible"
+    text.textContent = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos quod atque magnam maiores, ipsam illo tempora, amet eaque provident neque exercitationem earum praesentium aliquam!"
+    tweetParent.appendChild(text);
+}
+function replyHelper(tweetParent){
+    // REPLY 
+    const reply = document.createElement("div");
+    reply.id = "reply";
+    reply.className = "row-start-2 row-end-4 col-start-11 col-end-14 pr-2 text-right";
+    tweetParent.appendChild(reply);
 
+        // REPLY BUTTON
+    const replyButton = document.createElement("button");
+    replyButton.id = "reply-button";
+    replyButton.className = "cursor-pointer pr-1";
+    reply.appendChild(replyButton);
+
+    const replyImg = document.createElement("img");
+    replyImg.src = "images/icon-reply.svg";
+    replyButton.appendChild(replyImg);
+
+        // REPLY SPAN
+    const replyText = document.createElement("span");
+    replyText.id = "reply-text";
+    replyText.className = "font-bold text-blue-900";
+    replyText.textContent = "Reply";
+    reply.appendChild(replyText);
+}
+function dateHelper(tweetParent){
+    // DATE 
+    const date = document.createElement("div");
+    date.id = "date";
+    date.className = "row-start-2 row-end-4 col-start-7 col-end-10 text-gray-500 z-10 overflow";
+    date.textContent = `${count} month ago`;
+    count++;
+    tweetParent.appendChild(date);
+}
+function usernameHelper(tweetParent){
+    const username = document.createElement("div");
+    username.id = "username";
+    username.className = "row-start-2 row-end-4 col-start-4 col-end-7 font-bold cursor-pointer hover:underline z-10 overflow";
+    username.textContent = `${usersInformation[tweetCounter % 4].username}`;
+    tweetParent.appendChild(username);
 }
 
 // CREATE LOGIC FOR ADDING AND REMOVING STUFF
