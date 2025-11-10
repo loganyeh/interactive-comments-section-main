@@ -10,6 +10,9 @@ const timeline = document.getElementById("timeline");
 const x = "";
 const y = "";
 let tweetCounter = 0;
+    // TIMELINE ARRAY
+const timelineArr = [];
+
 
 // MAIN (REGULAR) FUNCTIONS
 function createTweet(){
@@ -37,6 +40,11 @@ function createTweet(){
     replyHelper(tweet);
     const replyButton = replyHelper(tweet);
     replyClick(replyButton, tweet.id);
+
+    // CREATE AN IF STATEMENT TO CHECK IF THE REPLY BUTTON IS CLICKED 
+    // IF CLICKED TAKE THE CURRENT INDEX OF THE TWEET IN THE ARRAY AND THEN PUSH THE 
+    // REPLY COMMENT RIGHT AFTER IT
+
 
 }
 function quoteTweet(){
@@ -74,7 +82,7 @@ function quoteTweet(){
     replyHelper(tweet);
     const replyButton = replyHelper(tweet);
     replyClick(replyButton, tweet.id);
-    
+
     
 }
 function createReply(){
@@ -128,13 +136,28 @@ function userNameClick(username){
     });
 }
 function replyClick(reply, id){
+    
     reply.addEventListener("click", () => {
         console.log("clicked reply button");
-        retrieveID(id);
+        // id ≈ gets the tweet-#
+        // id.slice(6) ≈ gets the number only
+        const tweetID = Number(id.slice(6));
+        isClickedReply = true;
+
+        timelineArr.splice(tweetID + 1, createTweet());
+        console.log(tweetID);
+        console.log(typeof tweetID);
+
+        // if(isClickedReply){
+        //     console.log(`replyClick: ${tweetID}`);
+        // }
+        // else if (!isClickedReply){
+        //     isClickedReply = false; 
+        //     timeline.
+        // }
+
+
     });
-}
-function retrieveID(id){
-    console.log(`TWEET: #${id}`);
 }
 function voteContainer(tweetParent){
     // UPVOTE/DOWNVOTE CONTAINER
@@ -231,12 +254,12 @@ function usernameHelper(tweetParent){
 
 let count = 1;
     // TIMELINE ARRAY
-const timelineArr = [];
+// const timelineArr = [];
 timelineArr.push(createTweet);
 timelineArr.push(quoteTweet);
 timelineArr.push(createTweet);
 timelineArr.push(quoteTweet);
-timelineArr.push(createReply);
+// timelineArr.push(createReply);
 // timelineArr.splice(2, 1);
 
 console.log(timelineArr);
