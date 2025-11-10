@@ -1,23 +1,26 @@
 
 // GLOBAL VARIABLES
-const usersInformation = [
-    {username: "amyrobson", avatar: "images/avatars/image-amyrobson.png", date: "1 month ago"},
-    {username: "juliusromo", avatar: "images/avatars/image-juliusomo.png", date: "2 days ago"},
-    {username: "maxblagun", avatar: "images/avatars/image-maxblagun.png", date: "2 weeks ago"},
-    {username: "ramsesmiron", avatar: "images/avatars/image-ramsesmiron.png", date: "1 week ago"},
-];
-let count = 1;
 const timeline = document.getElementById("timeline");
-const x = "";
-const y = "";
+const defaultUserProfiles = [
+    {id: 1, username: "Nick", avatar: "images/avatars/image-juliusomo.png", date: "3 years ago"},
+    {id: 2, username: "Broussard", avatar: "images/avatars/image-amyrobson.png", date: "2 years ago"},
+    {id: 3, username: "Wildes", avatar: "images/avatars/image-maxblagun.png", date: "2 years ago"},
+    {id: 4, username: "Greg", avatar: "images/avatars/image-ramsesmiron.png", date: "1 year ago"},
+];
+const newUserProfiles = [
+    {id: 1, username: "Lamar", avatar: "images/avatars/image-amyrobson.png", date: "Week 8"},
+    {id: 2, username: "Allen", avatar: "images/avatars/image-juliusomo.png", date: "Week 3"},
+    {id: 3, username: "Stafford", avatar: "images/avatars/image-maxblagun.png", date: "Week 2"},
+    {id: 4, username: "Baker", avatar: "images/avatars/image-ramsesmiron.png", date: "BYE Week"},
+];
 let tweetCounter = 0;
 // const [num1, num2] = randomNumGenerator();
     // TIMELINE ARRAY
 const tweetsArray = [
-    () => createTweet(usersInformation[0].username, usersInformation[0].avatar),
-    () => quoteTweet(usersInformation[1].username, usersInformation[1].avatar),
-    () => createTweet(usersInformation[3].username, usersInformation[3].avatar),
-    () => quoteTweet(usersInformation[2].username, usersInformation[2].avatar)
+    () => createTweet(defaultUserProfiles[0].username, defaultUserProfiles[0].avatar),
+    () => quoteTweet(defaultUserProfiles[1].username, defaultUserProfiles[1].avatar),
+    () => createTweet(defaultUserProfiles[3].username, defaultUserProfiles[3].avatar),
+    () => quoteTweet(defaultUserProfiles[2].username, defaultUserProfiles[2].avatar)
 ]
 
 tweetsArray.forEach((fn) => {
@@ -114,7 +117,7 @@ function createReply(){
     const replyProfileImg = document.createElement("img");
     replyProfileImg.id = "reply-profile-img";
     replyProfileImg.className = "h-full w-full object-contain";
-    replyProfileImg.src = `${usersInformation[tweetCounter % 4].avatar}`;
+    replyProfileImg.src = `${defaultUserProfiles[tweetCounter % 4].avatar}`;
     replyProfileImgContainer.appendChild(replyProfileImg);
     replyCommentContainer.appendChild(replyProfileImgContainer);
 
@@ -159,8 +162,8 @@ function replyClick(reply, id){
         const tweetID = Number(id.slice(6));
 
         const [num1, num2] = randomNumGenerator();
-        let username = usersInformation[num1].username;
-        let avatar = usersInformation[num2].avatar;
+        let username = defaultUserProfiles[num1].username;
+        let avatar = defaultUserProfiles[num2].avatar;
 
         if(isClicked){
             tweetsArray.push(() => createTweet(username, avatar));
@@ -254,12 +257,15 @@ function replyHelper(tweetParent){
     return replyButton;
 }
 function dateHelper(tweetParent){
+    // VARIABLES
+    let dateCounter = 1;
+
     // DATE 
     const date = document.createElement("div");
     date.id = "date";
     date.className = "row-start-2 row-end-4 col-start-7 col-end-10 text-gray-500 z-10 overflow";
-    date.textContent = `${count} month ago`;
-    count++;
+    date.textContent = `${dateCounter} month ago`;
+    dateCounter++;
     tweetParent.appendChild(date);
 }
 function usernameHelper(tweetParent, usernameID){
