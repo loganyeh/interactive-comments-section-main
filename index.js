@@ -17,10 +17,10 @@ let tweetCounter = 0;
 // const [num1, num2] = randomNumGenerator();
     // TIMELINE ARRAY
 const tweetsArray = [
-    () => createTweet(defaultUserProfiles[0].username, defaultUserProfiles[0].profilePicture),
-    () => quoteTweet(defaultUserProfiles[1].username, defaultUserProfiles[1].profilePicture),
-    () => createTweet(defaultUserProfiles[3].username, defaultUserProfiles[3].profilePicture),
-    () => quoteTweet(defaultUserProfiles[2].username, defaultUserProfiles[2].profilePicture)
+    () => createTweet(defaultUserProfiles[0].id, defaultUserProfiles[0].username, defaultUserProfiles[0].profilePicture, defaultUserProfiles[0].datePosted),
+    () => subTweet(defaultUserProfiles[1].profileTwitterID, defaultUserProfiles[1].username, defaultUserProfiles[1].profilePicture, defaultUserProfiles[1].datePosted),
+    () => createTweet(defaultUserProfiles[2].profileTwitterID, defaultUserProfiles[2].username, defaultUserProfiles[2].profilePicture, defaultUserProfiles[2].datePosted),
+    () => subTweet(defaultUserProfiles[3].profileTwitterID, defaultUserProfiles[3].username, defaultUserProfiles[3].profilePicture, defaultUserProfiles[3].datePosted),
 ]
 
 tweetsArray.forEach((fn) => {
@@ -46,7 +46,7 @@ function createTweet(profileTwitterID, profileUsername, profilePicture, datePost
     const username = addUsername(tweet, profileUsername);
     userNameClick(username);
     // DATE 
-    addDate(tweet);
+    addDate(tweet, datePosted);
     // TEXT 
     addTwitterText(tweet);
     // REPLY 
@@ -58,7 +58,7 @@ function createTweet(profileTwitterID, profileUsername, profilePicture, datePost
     // RETURN TWEET ID
 
 }
-function quoteTweet(profileTwitterID, profileUsername, profilePicture, datePosted){
+function subTweet(profileTwitterID, profileUsername, profilePicture, datePosted){
     tweetCounter++;
 
     // QUOTE TWEET CONTAINER
@@ -86,7 +86,7 @@ function quoteTweet(profileTwitterID, profileUsername, profilePicture, datePoste
     const username = addUsername(tweet, profileUsername);
     userNameClick(username);
     // DATE 
-    addDate(tweet);
+    addDate(tweet, datePosted);
     // TEXT 
     addTwitterText(tweet);
     // REPLY 
@@ -202,17 +202,17 @@ function addUsername(tweetContainer, profileUsername){
 
     return username;
 }
-function addDate(tweetContainer){
+function addDate(tweetContainer, datePosted){
     // VARIABLES
     let dateCounter = 1;
 
     // DATE 
-    const datePosted = document.createElement("div");
-    datePosted.id = "datePosted";
-    datePosted.className = "row-start-2 row-end-4 col-start-7 col-end-10 text-gray-500 z-10 overflow";
-    datePosted.textContent = `${dateCounter} month ago`;
+    const dateDiv = document.createElement("div");
+    dateDiv.id = "datePosted";
+    dateDiv.className = "row-start-2 row-end-4 col-start-7 col-end-10 text-gray-500 z-10 overflow";
+    dateDiv.textContent = `${datePosted}`;
     dateCounter++;
-    tweetContainer.appendChild(datePosted);
+    tweetContainer.appendChild(dateDiv);
 }
 function addTwitterText(tweetContainer){
     // TEXT 
