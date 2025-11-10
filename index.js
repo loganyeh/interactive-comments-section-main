@@ -13,14 +13,14 @@ const y = "";
 let tweetCounter = 0;
 // const [num1, num2] = randomNumGenerator();
     // TIMELINE ARRAY
-const timelineArr = [
+const tweetsArray = [
     () => createTweet(usersInformation[0].username, usersInformation[0].avatar),
     () => quoteTweet(usersInformation[1].username, usersInformation[1].avatar),
     () => createTweet(usersInformation[3].username, usersInformation[3].avatar),
     () => quoteTweet(usersInformation[2].username, usersInformation[2].avatar)
 ]
 
-timelineArr.forEach((fn) => {
+tweetsArray.forEach((fn) => {
     fn();
 });
 
@@ -163,20 +163,20 @@ function replyClick(reply, id){
         let avatar = usersInformation[num2].avatar;
 
         if(isClicked){
-            timelineArr.push(() => createTweet(username, avatar));
-            timelineArr[timelineArr.length - 1]();
-            console.log(timelineArr);
+            tweetsArray.push(() => createTweet(username, avatar));
+            tweetsArray[tweetsArray.length - 1]();
+            console.log(tweetsArray);
         }
         else{
-            timelineArr.pop();
+            tweetsArray.pop();
             
             timeline.innerHTML = ``;
             tweetCounter = 0;
             count = 1;
-            timelineArr.forEach((fn) => {
+            tweetsArray.forEach((fn) => {
                 fn();
             });
-            console.log(timelineArr);
+            console.log(tweetsArray);
         }
 
     });
