@@ -138,10 +138,16 @@ function userNameClick(username){
 let isClickedReply = false;
 
 function replyClick(reply, id){
+    let isClicked = false;
+
     reply.addEventListener("click", () => {
         console.log("clicked reply button");
         const tweetID = Number(id.slice(6));
         isClickedReply = true;
+
+        if(isClicked){
+            
+        }
 
 
         
