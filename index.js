@@ -44,7 +44,7 @@ function createTweet(profileTwitterID, profileUsername, profilePicture, datePost
     // USERNAME
     addUsername(tweet, profileUsername);
     const username = addUsername(tweet, profileUsername);
-    userNameClick(username);
+    usernameClickListener(username);
     // DATE 
     addDate(tweet, datePosted);
     // TEXT 
@@ -52,7 +52,7 @@ function createTweet(profileTwitterID, profileUsername, profilePicture, datePost
     // REPLY 
     addReplyTextField(tweet);
     const replyButton = addReplyTextField(tweet);
-    replyClick(replyButton, tweet.id);
+    replyClickListener(replyButton, tweet.id, profileUsername, profilePicture);
 
     console.log(`TWEET#: ${tweet.id}`);
     // RETURN TWEET ID
@@ -84,7 +84,7 @@ function subTweet(profileTwitterID, profileUsername, profilePicture, datePosted)
     // USERNAME
     addUsername(tweet, profileUsername);
     const username = addUsername(tweet, profileUsername);
-    userNameClick(username);
+    usernameClickListener(username);
     // DATE 
     addDate(tweet, datePosted);
     // TEXT 
@@ -92,7 +92,7 @@ function subTweet(profileTwitterID, profileUsername, profilePicture, datePosted)
     // REPLY 
     addReplyTextField(tweet);
     const replyButton = addReplyTextField(tweet);
-    replyClick(replyButton, tweet.id);
+    replyClickListener(replyButton, tweet.id);
 
     console.log(`TWEET#: ${tweet.id}`);
     
@@ -250,41 +250,15 @@ function addReplyTextField(tweetContainer){
 }
 
 // EVENT LISTENERS
-function userNameClick(username){
+function usernameClickListener(username){
     username.addEventListener("click", () => {
         console.log("clicked username... visiting profile");
     });
 }
 let isClickedReply = false;
 
-function replyClick(reply, id){
-    let isClicked = false;
-
+function replyClickListener(reply, id, profileUsername, profilePicture){
     reply.addEventListener("click", () => {
-        isClicked = !isClicked;
-        console.log("clicked reply button");
-        const tweetID = Number(id.slice(6));
-
-        const [num1, num2] = randomNumGenerator();
-        let username = defaultUserProfiles[num1].username;
-        let profilePicture = defaultUserProfiles[num2].profilePicture;
-
-        if(isClicked){
-            tweetsArray.push(() => createTweet(username, profilePicture));
-            tweetsArray[tweetsArray.length - 1]();
-            console.log(tweetsArray);
-        }
-        else{
-            tweetsArray.pop();
-            
-            timeline.innerHTML = ``;
-            tweetCounter = 0;
-            count = 1;
-            tweetsArray.forEach((fn) => {
-                fn();
-            });
-            console.log(tweetsArray);
-        }
 
     });
 }
