@@ -13,13 +13,13 @@ const newUserProfiles = [
     {id: 7, username: "Stafford", profilePicture: "images/avatars/image-maxblagun.png", datePosted: "Week 2"},
     {id: 8, username: "Baker", profilePicture: "images/avatars/image-ramsesmiron.png", datePosted: "BYE Week"},
 ];
-const tweetsArray = [
+const tweetTimelineArray = [
     () => createTweet(defaultUserProfiles[0].id, defaultUserProfiles[0].username, defaultUserProfiles[0].profilePicture, defaultUserProfiles[0].datePosted),
     () => quoteTweet(defaultUserProfiles[1].id, defaultUserProfiles[1].username, defaultUserProfiles[1].profilePicture, defaultUserProfiles[1].datePosted),
     () => createTweet(defaultUserProfiles[2].id, defaultUserProfiles[2].username, defaultUserProfiles[2].profilePicture, defaultUserProfiles[2].datePosted),
     () => quoteTweet(defaultUserProfiles[3].id, defaultUserProfiles[3].username, defaultUserProfiles[3].profilePicture, defaultUserProfiles[3].datePosted),
 ]
-tweetsArray.forEach((fn) => {
+tweetTimelineArray.forEach((fn) => {
     fn();
 });
 let newTweetCounter = 4;
@@ -45,11 +45,11 @@ function createTweet(profileTwitterID, profileUsername, profilePicture, datePost
     // TEXT 
     addTwitterText(tweet);
     // REPLY 
-    addReplyTextField(tweet);
+    // addReplyTextField(tweet);
     const replyButton = addReplyTextField(tweet);
     replyClickListener(replyButton, tweet.id, profileUsername, profilePicture);
 
-    console.log(`${tweet.id}`);
+    // console.log(`${tweet.id}`);
 
 }
 function quoteTweet(profileTwitterID, profileUsername, profilePicture, datePosted){
@@ -86,7 +86,7 @@ function quoteTweet(profileTwitterID, profileUsername, profilePicture, datePoste
     const replyButton = addReplyTextField(tweet);
     replyClickListener(replyButton, tweet.id);
 
-    console.log(`${quoteTweetContainer.id}`);
+    // console.log(`${quoteTweetContainer.id}`);
     
 }
 function createReply(profileTwitterID, profileUsername, profilePicture, datePosted){
@@ -235,11 +235,21 @@ function usernameClickListener(username){
         console.log("clicked username... visiting profile");
     });
 }
+
+let newUserProfilesIndex = 0;
 function replyClickListener(reply, id, profileUsername, profilePicture){
     reply.addEventListener("click", () => {
+        // console.log("reply button clicked");
         newTweetCounter++;
-        console.log("reply button clicked");
-        console.log(`newTweetCoutner: ${newTweetCounter}`);
+        // create a new createTweet from newUserProfiles and push it to the timelineArray
+
+        tweetTimelineArray.push(() => createTweet(newUserProfiles[newUserProfilesIndex % 4].id, newUserProfiles[newUserProfilesIndex % 4].username, newUserProfiles[newUserProfilesIndex % 4].profilePicture, newUserProfiles[newUserProfilesIndex % 4].datePosted));
+        timeline.innerHTML = ``;
+        tweetTimelineArray.forEach((fn) => {
+            fn();
+        });
+
+        newUserProfilesIndex++;
     });
 }
 
