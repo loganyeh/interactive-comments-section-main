@@ -13,27 +13,22 @@ const newUserProfiles = [
     {id: 7, username: "Stafford", profilePicture: "images/avatars/image-maxblagun.png", datePosted: "Week 2"},
     {id: 8, username: "Baker", profilePicture: "images/avatars/image-ramsesmiron.png", datePosted: "BYE Week"},
 ];
-let tweetCounter = 0;
-// const [num1, num2] = randomNumGenerator();
-    // TIMELINE ARRAY
 const tweetsArray = [
     () => createTweet(defaultUserProfiles[0].id, defaultUserProfiles[0].username, defaultUserProfiles[0].profilePicture, defaultUserProfiles[0].datePosted),
-    () => subTweet(defaultUserProfiles[1].profileTwitterID, defaultUserProfiles[1].username, defaultUserProfiles[1].profilePicture, defaultUserProfiles[1].datePosted),
-    () => createTweet(defaultUserProfiles[2].profileTwitterID, defaultUserProfiles[2].username, defaultUserProfiles[2].profilePicture, defaultUserProfiles[2].datePosted),
-    () => subTweet(defaultUserProfiles[3].profileTwitterID, defaultUserProfiles[3].username, defaultUserProfiles[3].profilePicture, defaultUserProfiles[3].datePosted),
+    () => quoteTweet(defaultUserProfiles[1].id, defaultUserProfiles[1].username, defaultUserProfiles[1].profilePicture, defaultUserProfiles[1].datePosted),
+    () => createTweet(defaultUserProfiles[2].id, defaultUserProfiles[2].username, defaultUserProfiles[2].profilePicture, defaultUserProfiles[2].datePosted),
+    () => quoteTweet(defaultUserProfiles[3].id, defaultUserProfiles[3].username, defaultUserProfiles[3].profilePicture, defaultUserProfiles[3].datePosted),
 ]
-
 tweetsArray.forEach((fn) => {
     fn();
 });
+let newTweetCounter = 4;
 
 // MAIN (REGULAR) FUNCTIONS
 function createTweet(profileTwitterID, profileUsername, profilePicture, datePosted){
-    tweetCounter++;
-
     // TWEET CONTAINER ------------------------------------
     const tweet = document.createElement(`div`);
-    tweet.id = `tweet-${tweetCounter}`;
+    tweet.id = `Tweet#${profileTwitterID}`;
     tweet.className = "h-44 w-5/6 grid grid-rows-13 grid-cols-13 mt-3 p-4 rounded-xl bg-white shadow-md";
     timeline.appendChild(tweet);
                     
@@ -54,17 +49,14 @@ function createTweet(profileTwitterID, profileUsername, profilePicture, datePost
     const replyButton = addReplyTextField(tweet);
     replyClickListener(replyButton, tweet.id, profileUsername, profilePicture);
 
-    console.log(`TWEET#: ${tweet.id}`);
-    // RETURN TWEET ID
+    console.log(`${tweet.id}`);
 
 }
-function subTweet(profileTwitterID, profileUsername, profilePicture, datePosted){
-    tweetCounter++;
-
+function quoteTweet(profileTwitterID, profileUsername, profilePicture, datePosted){
     // QUOTE TWEET CONTAINER
     const quoteTweetContainer = document.createElement("div");
     timeline.appendChild(quoteTweetContainer);
-    quoteTweetContainer.id = `quote-tweet-${tweetCounter}`;
+    quoteTweetContainer.id = `QuoteTweet#${profileTwitterID}`;
     quoteTweetContainer.className = "h-44 w-5/6 flex justify-end mt-6 rounded-2xl";
     // QUOTE TWEET CONTAINER BORDER
     const quoteTweetContainerBorder = document.createElement("div");
@@ -73,7 +65,7 @@ function subTweet(profileTwitterID, profileUsername, profilePicture, datePosted)
     quoteTweetContainerBorder.className = "h-44 w-11/12 flex justify-end border-l-2 border-gray-200";
     // TWEET CONTAINER
     const tweet = document.createElement(`div`);
-    tweet.id = `tweet-${tweetCounter}`;
+    tweet.id = `tweet-${profileTwitterID}`;
     tweet.className = "h-full w-11/12 grid grid-rows-13 grid-cols-13 p-4 rounded-2xl bg-white shadow-md";
     quoteTweetContainerBorder.appendChild(tweet);
     
@@ -94,15 +86,13 @@ function subTweet(profileTwitterID, profileUsername, profilePicture, datePosted)
     const replyButton = addReplyTextField(tweet);
     replyClickListener(replyButton, tweet.id);
 
-    console.log(`TWEET#: ${tweet.id}`);
+    console.log(`${quoteTweetContainer.id}`);
     
 }
-function createReply(){
-    tweetCounter++;
-
+function createReply(profileTwitterID, profileUsername, profilePicture, datePosted){
     // REPLY COMMENT CONTAINER -------------------------------
     const replyCommentContainer = document.createElement("div");
-    replyCommentContainer.id = `reply-comment-container-${tweetCounter}`;
+    replyCommentContainer.id = `reply-comment-container-${profileTwitterID}`;
     replyCommentContainer.className = "h-40 w-5/6 grid grid-rows-13 grid-cols-13 mt-3 p-4 rounded-xl bg-white shadow-md";
     timeline.appendChild(replyCommentContainer);
 
@@ -113,7 +103,7 @@ function createReply(){
     const replyProfileImg = document.createElement("img");
     replyProfileImg.id = "reply-profile-img";
     replyProfileImg.className = "h-full w-full object-contain";
-    replyProfileImg.src = `${defaultUserProfiles[tweetCounter % 4].profilePicture}`;
+    replyProfileImg.src = `${defaultUserProfiles[profileTwitterID % 4].profilePicture}`;
     replyProfileImgContainer.appendChild(replyProfileImg);
     replyCommentContainer.appendChild(replyProfileImgContainer);
 
@@ -143,16 +133,6 @@ function createReply(){
 }
 
 // SMALL FUNCTIONS
-function randomNumGenerator(){
-    const min = 0;
-    const max = 4;
-    let x = 0;
-    let y = 0;
-    x = Math.floor(Math.random() * max - min + min) + min;
-    y = Math.floor(Math.random() * max - min + min) + min;
-
-    return [x, y];
-}
 
 // HELPER FUNCTIONS
 function addUpvotingSystem(tweetContainer){
@@ -255,11 +235,11 @@ function usernameClickListener(username){
         console.log("clicked username... visiting profile");
     });
 }
-let isClickedReply = false;
-
 function replyClickListener(reply, id, profileUsername, profilePicture){
     reply.addEventListener("click", () => {
-
+        newTweetCounter++;
+        console.log("reply button clicked");
+        console.log(`newTweetCoutner: ${newTweetCounter}`);
     });
 }
 
