@@ -1,34 +1,37 @@
 
 // GLOBAL VARIABLES
 const timeline = document.getElementById("timeline");
+let newTweetCounter = 0;
 const defaultUserProfiles = [
-    {id: 1, username: "Nick", profilePicture: "images/avatars/image-juliusomo.png", datePosted: "3 years ago"},
-    {id: 2, username: "Broussard", profilePicture: "images/avatars/image-amyrobson.png", datePosted: "2 years ago"},
-    {id: 3, username: "Wildes", profilePicture: "images/avatars/image-maxblagun.png", datePosted: "2 years ago"},
-    {id: 4, username: "Greg", profilePicture: "images/avatars/image-ramsesmiron.png", datePosted: "1 year ago"},
+    {id: 1, username: "Nick", profilePicture: "images/avatars/image-juliusomo.png", datePosted: "3 years ago", tweet: 1},
+    {id: 2, username: "Broussard", profilePicture: "images/avatars/image-amyrobson.png", datePosted: "2 years ago", tweet: 2},
+    {id: 3, username: "Wildes", profilePicture: "images/avatars/image-maxblagun.png", datePosted: "2 years ago", tweet: 3},
+    {id: 4, username: "Greg", profilePicture: "images/avatars/image-ramsesmiron.png", datePosted: "1 year ago", tweet: 4},
 ];
 const newUserProfiles = [
-    {id: 5, username: "Lamar", profilePicture: "images/avatars/image-amyrobson.png", datePosted: "Week 8"},
-    {id: 6, username: "Allen", profilePicture: "images/avatars/image-juliusomo.png", datePosted: "Week 3"},
-    {id: 7, username: "Stafford", profilePicture: "images/avatars/image-maxblagun.png", datePosted: "Week 2"},
-    {id: 8, username: "Baker", profilePicture: "images/avatars/image-ramsesmiron.png", datePosted: "BYE Week"},
+    {id: 5, username: "Lamar", profilePicture: "", datePosted: "Week 8", tweet: 5},
+    {id: 6, username: "Allen", profilePicture: "", datePosted: "Week 3", tweet: 6},
+    {id: 7, username: "Stafford", profilePicture: "", datePosted: "Week 2", tweet: 7},
+    {id: 8, username: "Baker", profilePicture: "", datePosted: "BYE Week", tweet: 8},
+    // {id: 5, username: "Lamar", profilePicture: "images/avatars/image-amyrobson.png", datePosted: "Week 8"},
+    // {id: 6, username: "Allen", profilePicture: "images/avatars/image-juliusomo.png", datePosted: "Week 3"},
+    // {id: 7, username: "Stafford", profilePicture: "images/avatars/image-maxblagun.png", datePosted: "Week 2"},
+    // {id: 8, username: "Baker", profilePicture: "images/avatars/image-ramsesmiron.png", datePosted: "BYE Week"},
 ];
 const tweetTimelineArray = [
-    () => createTweet(defaultUserProfiles[0].id, defaultUserProfiles[0].username, defaultUserProfiles[0].profilePicture, defaultUserProfiles[0].datePosted),
-    () => quoteTweet(defaultUserProfiles[1].id, defaultUserProfiles[1].username, defaultUserProfiles[1].profilePicture, defaultUserProfiles[1].datePosted),
-    () => createTweet(defaultUserProfiles[2].id, defaultUserProfiles[2].username, defaultUserProfiles[2].profilePicture, defaultUserProfiles[2].datePosted),
-    () => quoteTweet(defaultUserProfiles[3].id, defaultUserProfiles[3].username, defaultUserProfiles[3].profilePicture, defaultUserProfiles[3].datePosted),
+    () => createTweet(defaultUserProfiles[0].id, defaultUserProfiles[0].username, defaultUserProfiles[0].profilePicture, defaultUserProfiles[0].datePosted, defaultUserProfiles[0].tweet),
+    () => createTweet(defaultUserProfiles[2].id, defaultUserProfiles[2].username, defaultUserProfiles[2].profilePicture, defaultUserProfiles[2].datePosted, defaultUserProfiles[2].tweet),
 ]
 tweetTimelineArray.forEach((fn) => {
     fn();
 });
-let newTweetCounter = 4;
 
 // MAIN (REGULAR) FUNCTIONS
-function createTweet(profileTwitterID, profileUsername, profilePicture, datePosted){
+function createTweet(profileTwitterID, profileUsername, profilePicture, datePosted, tweetNumber){
+    newTweetCounter++;
     // TWEET CONTAINER ------------------------------------
     const tweet = document.createElement(`div`);
-    tweet.id = `Tweet#${profileTwitterID}`;
+    tweet.id = `Tweet#${tweetNumber}`;
     tweet.className = "h-44 w-5/6 grid grid-rows-13 grid-cols-13 mt-3 p-4 rounded-xl bg-white shadow-md";
     timeline.appendChild(tweet);
                     
@@ -47,48 +50,52 @@ function createTweet(profileTwitterID, profileUsername, profilePicture, datePost
     // REPLY 
     // addReplyTextField(tweet);
     const replyButton = addReplyTextField(tweet);
-    replyClickListener(replyButton, tweet.id, profileUsername, profilePicture);
+    replyClickListener(replyButton, profileTwitterID);
 
     // console.log(`${tweet.id}`);
 
 }
-function quoteTweet(profileTwitterID, profileUsername, profilePicture, datePosted){
-    // QUOTE TWEET CONTAINER
-    const quoteTweetContainer = document.createElement("div");
-    timeline.appendChild(quoteTweetContainer);
-    quoteTweetContainer.id = `QuoteTweet#${profileTwitterID}`;
-    quoteTweetContainer.className = "h-44 w-5/6 flex justify-end mt-6 rounded-2xl";
-    // QUOTE TWEET CONTAINER BORDER
-    const quoteTweetContainerBorder = document.createElement("div");
-    quoteTweetContainer.appendChild(quoteTweetContainerBorder);
-    quoteTweetContainerBorder.id = "quote-tweet-container-border";
-    quoteTweetContainerBorder.className = "h-44 w-11/12 flex justify-end border-l-2 border-gray-200";
-    // TWEET CONTAINER
-    const tweet = document.createElement(`div`);
-    tweet.id = `tweet-${profileTwitterID}`;
-    tweet.className = "h-full w-11/12 grid grid-rows-13 grid-cols-13 p-4 rounded-2xl bg-white shadow-md";
-    quoteTweetContainerBorder.appendChild(tweet);
-    
-    // UPVOTE/DOWNVOTE CONTAINER
-    addUpvotingSystem(tweet);
-    // PROFILE IMG
-    addProfilePicture(tweet, profilePicture);
-    // USERNAME
-    addUsername(tweet, profileUsername);
-    const username = addUsername(tweet, profileUsername);
-    usernameClickListener(username);
-    // DATE 
-    addDate(tweet, datePosted);
-    // TEXT 
-    addTwitterText(tweet);
-    // REPLY 
-    addReplyTextField(tweet);
-    const replyButton = addReplyTextField(tweet);
-    replyClickListener(replyButton, tweet.id);
 
-    // console.log(`${quoteTweetContainer.id}`);
+// SIDELINE
+// function quoteTweet(profileTwitterID, profileUsername, profilePicture, datePosted, tweetNumber){
+//     newTweetCounter++;
+//     // QUOTE TWEET CONTAINER
+//     const quoteTweetContainer = document.createElement("div");
+//     timeline.appendChild(quoteTweetContainer);
+//     quoteTweetContainer.id = `QuoteTweet#${tweetNumber}`;
+//     quoteTweetContainer.className = "h-44 w-5/6 flex justify-end mt-6 rounded-2xl";
+//     // QUOTE TWEET CONTAINER BORDER
+//     const quoteTweetContainerBorder = document.createElement("div");
+//     quoteTweetContainer.appendChild(quoteTweetContainerBorder);
+//     quoteTweetContainerBorder.id = "quote-tweet-container-border";
+//     quoteTweetContainerBorder.className = "h-44 w-11/12 flex justify-end border-l-2 border-gray-200";
+//     // TWEET CONTAINER
+//     const tweet = document.createElement(`div`);
+//     tweet.id = `tweet-${tweetNumber}`;
+//     tweet.className = "h-full w-11/12 grid grid-rows-13 grid-cols-13 p-4 rounded-2xl bg-white shadow-md";
+//     quoteTweetContainerBorder.appendChild(tweet);
     
-}
+//     // UPVOTE/DOWNVOTE CONTAINER
+//     addUpvotingSystem(tweet);
+//     // PROFILE IMG
+//     addProfilePicture(tweet, profilePicture);
+//     // USERNAME
+//     addUsername(tweet, profileUsername);
+//     const username = addUsername(tweet, profileUsername);
+//     usernameClickListener(username);
+//     // DATE 
+//     addDate(tweet, datePosted);
+//     // TEXT 
+//     addTwitterText(tweet);
+//     // REPLY 
+//     addReplyTextField(tweet);
+//     const replyButton = addReplyTextField(tweet);
+//     replyClickListener(replyButton, profileTwitterID);
+
+//     // console.log(`${quoteTweetContainer.id}`);
+    
+// }
+
 function createReply(profileTwitterID, profileUsername, profilePicture, datePosted){
     // REPLY COMMENT CONTAINER -------------------------------
     const replyCommentContainer = document.createElement("div");
@@ -237,13 +244,18 @@ function usernameClickListener(username){
 }
 
 let newUserProfilesIndex = 0;
-function replyClickListener(reply, id, profileUsername, profilePicture){
+function replyClickListener(reply, id){
     reply.addEventListener("click", () => {
         // console.log("reply button clicked");
         newTweetCounter++;
-        // create a new createTweet from newUserProfiles and push it to the timelineArray
 
-        tweetTimelineArray.push(() => createTweet(newUserProfiles[newUserProfilesIndex % 4].id, newUserProfiles[newUserProfilesIndex % 4].username, newUserProfiles[newUserProfilesIndex % 4].profilePicture, newUserProfiles[newUserProfilesIndex % 4].datePosted));
+        // GET THE ID OF THE TWEET AND PUSH IT AFTER THAT TWEET
+        // CHECK NEWTWEETCOUNTER - 1 to GET INDEX OF THE TWEET
+        // tweetTimelineArray(newTweetCoutner - 1 or 2)
+
+        // tweetTimelineArray.push(() => createTweet(newUserProfiles[newUserProfilesIndex % 4].id, newUserProfiles[newUserProfilesIndex % 4].username, newUserProfiles[newUserProfilesIndex % 4].profilePicture, newUserProfiles[newUserProfilesIndex % 4].datePosted));
+        // TRYING TO INSERT ELEMENT AT X INDEX
+        tweetTimelineArray.splice(id, 0, () => createTweet(newUserProfiles[newUserProfilesIndex % 4].id, newUserProfiles[newUserProfilesIndex % 4].username, newUserProfiles[newUserProfilesIndex % 4].profilePicture, newUserProfiles[newUserProfilesIndex % 4].datePosted));
         timeline.innerHTML = ``;
         tweetTimelineArray.forEach((fn) => {
             fn();
@@ -252,5 +264,7 @@ function replyClickListener(reply, id, profileUsername, profilePicture){
         newUserProfilesIndex++;
     });
 }
+
+
 
 
